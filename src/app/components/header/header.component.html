@@ -1,0 +1,44 @@
+<header class="mb-4">
+  <nav class="navbar fixed-top">
+
+    <div class="flex-grow-1">
+      <button class="header-button">
+        RoomsBooking
+      </button>
+    </div>
+
+    <div class="flex-grow-1 float-right">
+
+      <div *ngIf="IsLogged" ngbDropdown class="float-right">
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem>Profil</button>
+          <button ngbDropdownItem>Wyloguj się</button>
+        </div>
+
+        <button class="header-button" ngbDropdownToggle>
+          Moje konto
+        </button>
+      </div>
+
+      <div *ngIf="!IsLogged" class="float-right">
+        <button class="header-button" *ngIf="Role == 'ADMIN'  || Role == 'MODERATOR'">
+          Dodaj nowy pokój
+        </button>
+
+        <button class="header-button" *ngIf="Role == 'ADMIN'">
+          Zarządzanie kontami
+        </button>
+      </div>
+
+      <div *ngIf="!IsLogged">
+        <button class="float-right header-button">
+          Rejestracja
+        </button>
+        <button class="float-right header-button">
+          Logowanie
+        </button>
+      </div>
+
+    </div>
+  </nav>
+</header>
