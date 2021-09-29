@@ -1,16 +1,37 @@
 html {
   padding: 0;
   height: 100%;
-  font-size: 18px;
+  font-size: 16px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 body {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
   background-image: url("assets/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.section-header {
+  background-color: #2b73c5;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.alert {
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+
+
