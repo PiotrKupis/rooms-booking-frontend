@@ -73,8 +73,7 @@
               <select [formControlName]="'countryCode'"
                       onmousedown="if(this.options.length>8){this.size=8;}"
                       onchange='this.size=0;' onblur="this.size=0;">
-                <option *ngFor="let code of countryCodes; let position = index"
-                        value="position">{{code}}</option>
+                <option *ngFor="let countryCode of countryCodes">{{countryCode}}</option>
               </select>
             </div>
           </div>

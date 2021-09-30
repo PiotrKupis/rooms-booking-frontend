@@ -11,8 +11,9 @@ import {CountryCode} from "../../models/country-code";
 export class RegistrationComponent implements OnInit {
 
   registrationForm!: FormGroup;
-  countryCodesData: Array<CountryCode> = [];
   countryCodes: Array<string> = [];
+  errorMessage: string = "";
+  isSuccess: boolean = false;
 
   constructor() {
   }
@@ -43,15 +44,16 @@ export class RegistrationComponent implements OnInit {
       countryCode: new FormControl(""),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[0-9]{12}$/)])
+        Validators.pattern(/^[0-9]{6,12}$/)])
     });
 
-    this.countryCodesData = countryCallingCodes as CountryCode[];
-    for (let i = 0; i < this.countryCodesData.length; ++i) {
-      let countryName = this.countryCodesData[i].countryName;
-      let countryCode = this.countryCodesData[i].countryCode;
+    let countryCodesData = countryCallingCodes as CountryCode[];
+    for (let i = 0; i < countryCodesData.length; ++i) {
+      let countryName = countryCodesData[i].countryName;
+      let countryCode = countryCodesData[i].countryCode;
       this.countryCodes.push(`${countryName} (+${countryCode})`);
     }
+    this.countryCode?.setValue(this.countryCodes[0]);
 
     console.log("koniec");
   }
@@ -85,11 +87,22 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-    if (!this.registrationForm.valid) {
-      this.registrationForm.markAllAsTouched();
-      return;
+    // if (!this.registrationForm.valid) {
+    //   this.registrationForm.markAllAsTouched();
+    //   return;
+    // }
+
+    let registerRequest = {
+      name: this.name?.value,
+      surname: this.surname?.value,
+      password: this.password?.value,
+      repeatedPassword: this.repeatedPassword?.value,
+      email: this.email?.value,
+      countryCode: this.countryCode?.value.match(/\+\d+/)[0],
+      phoneNumber: this.phoneNumber?.value,
     }
 
+    console.log(registerRequest.name);
 
   }
 }
