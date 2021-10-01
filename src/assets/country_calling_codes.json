@@ -20,10 +20,6 @@
     "countryCode": 244
   },
   {
-    "countryName": "Antyle Holenderskie",
-    "countryCode": 599
-  },
-  {
     "countryName": "Arabia Saudyjska",
     "countryCode": 966
   },
@@ -112,10 +108,6 @@
     "countryCode": 385
   },
   {
-    "countryName": "Cook'a Wyspy",
-    "countryCode": 682
-  },
-  {
     "countryName": "Cypr",
     "countryCode": 357
   },
@@ -130,10 +122,6 @@
   {
     "countryName": "Dania",
     "countryCode": 45
-  },
-  {
-    "countryName": "Dżibuti",
-    "countryCode": 253
   },
   {
     "countryName": "Egipt",
@@ -176,10 +164,6 @@
     "countryCode": 33
   },
   {
-    "countryName": "Gabon",
-    "countryCode": 241
-  },
-  {
     "countryName": "Gambia",
     "countryCode": 220
   },
@@ -204,20 +188,8 @@
     "countryCode": 995
   },
   {
-    "countryName": "Gujana",
-    "countryCode": 592
-  },
-  {
-    "countryName": "Gujana Francuska",
-    "countryCode": 594
-  },
-  {
     "countryName": "Gwinea",
     "countryCode": 224
-  },
-  {
-    "countryName": "Gwinea - Bissau",
-    "countryCode": 245
   },
   {
     "countryName": "Gwinea Równikowa",
@@ -276,10 +248,6 @@
     "countryCode": 962
   },
   {
-    "countryName": "Jugosławia",
-    "countryCode": 381
-  },
-  {
     "countryName": "Kambodża",
     "countryCode": 588
   },
@@ -318,10 +286,6 @@
   {
     "countryName": "Kolumbia",
     "countryCode": 57
-  },
-  {
-    "countryName": "Komory",
-    "countryCode": 269
   },
   {
     "countryName": "Kongo",
@@ -396,14 +360,6 @@
     "countryCode": 261
   },
   {
-    "countryName": "Makau",
-    "countryCode": 853
-  },
-  {
-    "countryName": "Malawi",
-    "countryCode": 265
-  },
-  {
     "countryName": "Malediwy",
     "countryCode": 960
   },
@@ -422,10 +378,6 @@
   {
     "countryName": "Maroko",
     "countryCode": 212
-  },
-  {
-    "countryName": "Marshalla Wyspy",
-    "countryCode": 692
   },
   {
     "countryName": "Mauretania",
@@ -456,10 +408,6 @@
     "countryCode": 258
   },
   {
-    "countryName": "Myanmar (Birma)",
-    "countryCode": 95
-  },
-  {
     "countryName": "Namibia",
     "countryCode": 264
   },
@@ -484,24 +432,8 @@
     "countryCode": 234
   },
   {
-    "countryName": "Nikaragua",
-    "countryCode": 505
-  },
-  {
-    "countryName": "Niue",
-    "countryCode": 683
-  },
-  {
-    "countryName": "Norfolk Wyspa",
-    "countryCode": 672
-  },
-  {
     "countryName": "Norwegia",
     "countryCode": 47
-  },
-  {
-    "countryName": "Nowa Kaledonia",
-    "countryCode": 687
   },
   {
     "countryName": "Nowa Zelandia",
@@ -512,16 +444,8 @@
     "countryCode": 968
   },
   {
-    "countryName": "Owcze Wyspy",
-    "countryCode": 298
-  },
-  {
     "countryName": "Pakistan",
     "countryCode": 92
-  },
-  {
-    "countryName": "Palau",
-    "countryCode": 680
   },
   {
     "countryName": "Palestyna",
@@ -560,12 +484,8 @@
     "countryCode": 27
   },
   {
-    "countryName": "Republika\nŚrodkowoafrykańska",
+    "countryName": "Republika Środkowoafrykańska",
     "countryCode": 236
-  },
-  {
-    "countryName": "Reunion",
-    "countryCode": 262
   },
   {
     "countryName": "Rosja",
@@ -580,20 +500,8 @@
     "countryCode": 250
   },
   {
-    "countryName": "Salomona Wyspy",
-    "countryCode": 677
-  },
-  {
     "countryName": "Salwador",
     "countryCode": 503
-  },
-  {
-    "countryName": "Samoa",
-    "countryCode": 684
-  },
-  {
-    "countryName": "Samoa Zachodnie",
-    "countryCode": 685
   },
   {
     "countryName": "San Marino",
@@ -636,14 +544,6 @@
     "countryCode": 1
   },
   {
-    "countryName": "Suazi",
-    "countryCode": 268
-  },
-  {
-    "countryName": "Surinam",
-    "countryCode": 597
-  },
-  {
     "countryName": "Syria",
     "countryCode": 963
   },
@@ -654,14 +554,6 @@
   {
     "countryName": "Szwecja",
     "countryCode": 46
-  },
-  {
-    "countryName": "Św. Heleny Wyspa",
-    "countryCode": 290
-  },
-  {
-    "countryName": "Św. Piotra i Mikeleona Wyspy",
-    "countryCode": 508
   },
   {
     "countryName": "Tadżykistan",
@@ -704,10 +596,6 @@
     "countryCode": 993
   },
   {
-    "countryName": "Tuvalu",
-    "countryCode": 688
-  },
-  {
     "countryName": "Uganda",
     "countryCode": 256
   },
@@ -722,14 +610,6 @@
   {
     "countryName": "Uzbekistan",
     "countryCode": 998
-  },
-  {
-    "countryName": "Vanuatu",
-    "countryCode": 678
-  },
-  {
-    "countryName": "Wallis i Futuna",
-    "countryCode": 681
   },
   {
     "countryName": "Wenezuela",

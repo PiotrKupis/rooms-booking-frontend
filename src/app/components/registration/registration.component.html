@@ -73,7 +73,8 @@
               <select [formControlName]="'countryCode'"
                       onmousedown="if(this.options.length>8){this.size=8;}"
                       onchange='this.size=0;' onblur="this.size=0;">
-                <option *ngFor="let countryCode of countryCodes">{{countryCode}}</option>
+                <option *ngFor="let countryCode of countryCodes"
+                        [selected]="countryCode == defaultSelectedCountryCode">{{countryCode}}</option>
               </select>
             </div>
           </div>
@@ -101,11 +102,12 @@
                      class="form-control">
             </div>
           </div>
-          <div *ngIf="password!.invalid && password!.touched" class="alert alert-danger">
-            <div *ngIf="password!.errors?.required">
+          <div *ngIf="password!.invalid && password!.touched">
+            <div *ngIf="password!.errors?.required" class="alert alert-danger">
               Pole nie może być puste
             </div>
-            <div *ngIf="password!.errors?.maxlength || password!.errors?.maxlength">
+            <div *ngIf="password!.errors?.maxlength || password!.errors?.maxlength"
+                 class="alert alert-danger">
               Hasło musi mieć od 5 do 200 znaków
             </div>
           </div>
@@ -118,31 +120,33 @@
                      class="form-control">
             </div>
           </div>
-          <div *ngIf="repeatedPassword!.invalid && repeatedPassword!.touched"
-               class="alert alert-danger">
-            <div *ngIf="repeatedPassword!.errors?.required">
+          <div *ngIf="repeatedPassword!.invalid && repeatedPassword!.touched">
+            <div *ngIf="repeatedPassword!.errors?.required" class="alert alert-danger">
               Pole nie może być puste
             </div>
-            <div *ngIf="repeatedPassword!.errors?.minLength || repeatedPassword!.errors?.maxLength">
+            <div *ngIf="repeatedPassword!.errors?.minLength || repeatedPassword!.errors?.maxLength"
+                 class="alert alert-danger">
               Hasło musi mieć od 5 do 200 znaków
             </div>
           </div>
 
-          <div class="col-md-8 offset-md-2 ">
+          <div class="col-md-8 offset-md-2">
             <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
               Zarejestruj się
             </button>
+
+            <div class="alert alert-success mt-3" *ngIf="isSuccess">
+              Rejestracja sie powiodła!
+            </div>
+
+            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
+              {{errorMessage}}
+            </div>
           </div>
 
-          <!--        <div class="col-md-8 offset-md-2" [ngClass]="{'alert alert-danger' : this.isError}"-->
-          <!--             *ngIf='registrationResultMessage.length > 0'>-->
-          <!--          <div [ngClass]="{'alert alert-success' : !this.isError}">-->
-          <!--            <p>{{registrationResultMessage}}</p>-->
-          <!--          </div>-->
-          <!--        </div>-->
         </form>
       </div>
     </div>
   </div>
-  <br/><br/>
+  <br/>
 </div>

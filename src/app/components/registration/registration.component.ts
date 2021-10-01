@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as countryCallingCodes from '../../../assets/country_calling_codes.json'
 import {CountryCode} from "../../models/country-code";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-registration',
@@ -12,13 +13,24 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm!: FormGroup;
   countryCodes: Array<string> = [];
+  defaultSelectedCountryCode: string = "";
   errorMessage: string = "";
   isSuccess: boolean = false;
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    let countryCodesData = countryCallingCodes as CountryCode[];
+    this.countryCodes = Object.values(countryCodesData)
+    .map(code => `${code.countryName} (+${code.countryCode})`)
+
+    //set default country code to Poland country code
+    let defaultCountryPosition = Object.values(countryCodesData)
+    .map(code => code.countryCode)
+    .indexOf(48);
+    this.defaultSelectedCountryCode = this.countryCodes[defaultCountryPosition];
+
     this.registrationForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -41,21 +53,11 @@ export class RegistrationComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(200),
         Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]),
-      countryCode: new FormControl(""),
+      countryCode: new FormControl(this.defaultSelectedCountryCode),
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[0-9]{6,12}$/)])
     });
-
-    let countryCodesData = countryCallingCodes as CountryCode[];
-    for (let i = 0; i < countryCodesData.length; ++i) {
-      let countryName = countryCodesData[i].countryName;
-      let countryCode = countryCodesData[i].countryCode;
-      this.countryCodes.push(`${countryName} (+${countryCode})`);
-    }
-    this.countryCode?.setValue(this.countryCodes[0]);
-
-    console.log("koniec");
   }
 
   get name() {
@@ -87,10 +89,24 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-    // if (!this.registrationForm.valid) {
-    //   this.registrationForm.markAllAsTouched();
-    //   return;
-    // }
+    this.isSuccess = false;
+    this.errorMessage = "";
+    this.password?.updateValueAndValidity();
+    this.repeatedPassword?.updateValueAndValidity();
+
+    if (!this.registrationForm.valid) {
+      this.registrationForm.markAllAsTouched();
+      return;
+    }
+
+    if (this.password?.value !== this.repeatedPassword?.value) {
+      this.password?.markAsTouched();
+      this.password?.setErrors({'incorrect': true});
+      this.repeatedPassword?.markAsTouched();
+      this.repeatedPassword?.setErrors({'incorrect': true});
+      this.errorMessage = "Podane hasła nie są takie same";
+      return;
+    }
 
     let registerRequest = {
       name: this.name?.value,
@@ -102,7 +118,16 @@ export class RegistrationComponent implements OnInit {
       phoneNumber: this.phoneNumber?.value,
     }
 
-    console.log(registerRequest.name);
-
+    this.authService.register(registerRequest)
+    .subscribe(() => {
+        this.isSuccess = true;
+      },
+      error => {
+        if (error.status === 409) {
+          this.errorMessage = "Podany adres email jest już zajęty";
+        } else {
+          this.errorMessage = "Wystapił błąd poczas łączenia się z serwerem";
+        }
+      });
   }
 }
