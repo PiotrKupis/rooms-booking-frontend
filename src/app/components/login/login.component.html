@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center align-items-center h-75">
+  <div class="col-md-6">
+
+    <div class="card text-center text-dark bg-light border-dark">
+
+      <div class="section-header h4">
+        Logowanie
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+          <div class="form-group row">
+            <label for="email" class="col-md-4 my-auto text-md-right">Email</label>
+            <div class="col-md-6">
+              <input type="text" [formControlName]="'email'" id="email" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="password" class="col-md-4 my-auto text-md-right">Hasło</label>
+            <div class="col-md-6">
+              <input type="password" [formControlName]="'password'" id="password"
+                     class="form-control">
+            </div>
+          </div>
+
+          <div class="col-md-8 offset-md-2">
+            <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
+              Zaloguj się
+            </button>
+
+            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
+              {{errorMessage}}
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

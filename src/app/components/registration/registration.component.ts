@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as countryCallingCodes from '../../../assets/country_calling_codes.json'
 import {CountryCode} from "../../models/country-code";
 import {AuthService} from "../../services/auth.service";
+import {RegisterRequest} from "../../models/registerRequest";
 
 @Component({
   selector: 'app-registration',
@@ -100,9 +101,8 @@ export class RegistrationComponent implements OnInit {
     }
 
     if (this.password?.value !== this.repeatedPassword?.value) {
-      this.password?.markAsTouched();
+      this.registrationForm.markAllAsTouched();
       this.password?.setErrors({'incorrect': true});
-      this.repeatedPassword?.markAsTouched();
       this.repeatedPassword?.setErrors({'incorrect': true});
       this.errorMessage = "Podane hasła nie są takie same";
       return;
@@ -115,8 +115,8 @@ export class RegistrationComponent implements OnInit {
       repeatedPassword: this.repeatedPassword?.value,
       email: this.email?.value,
       countryCode: this.countryCode?.value.match(/\+\d+/)[0],
-      phoneNumber: this.phoneNumber?.value,
-    }
+      phoneNumber: this.phoneNumber?.value
+    } as RegisterRequest;
 
     this.authService.register(registerRequest)
     .subscribe(() => {

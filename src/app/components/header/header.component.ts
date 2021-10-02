@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -7,25 +8,29 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  private isLogged?: boolean;
+  private _isLogged?: boolean;
   private email?: string;
-  private role?: string;
+  private _roles?: Array<string>;
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isLogged = false;
-    this.email = "jan@gmail.com";
-    this.role = "USER";
+    this.authService._isLogged.subscribe(isLogged => this._isLogged = isLogged);
+    this.authService.email.subscribe(email => this.email = email);
+    this.authService.roles.subscribe(roles => this._roles = roles);
+
+    this._isLogged = this.authService.isLogged();
+    this.email = this.authService.getEmail();
+    this._roles = this.authService.getRoles();
   }
 
-  get IsLogged() {
-    return this.isLogged;
+  get isLogged() {
+    return this._isLogged;
   }
 
-  get Role() {
-    return this.role;
+  get roles() {
+    return this._roles;
   }
 
 }

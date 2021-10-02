@@ -2,14 +2,14 @@
   <nav class="navbar fixed-top header">
 
     <div class="flex-grow-1">
-      <button class="header-button">
+      <button [routerLink]="'/'" class="header-button">
         RoomsBooking
       </button>
     </div>
 
     <div class="flex-grow-1 float-right">
 
-      <div *ngIf="IsLogged" ngbDropdown class="float-right">
+      <div *ngIf="isLogged" ngbDropdown class="float-right">
         <div ngbDropdownMenu>
           <button ngbDropdownItem>Profil</button>
           <button ngbDropdownItem>Wyloguj się</button>
@@ -20,21 +20,22 @@
         </button>
       </div>
 
-      <div *ngIf="!IsLogged" class="float-right">
-        <button class="header-button" *ngIf="Role == 'ADMIN'  || Role == 'MODERATOR'">
+      <div *ngIf="!isLogged" class="float-right">
+        <button class="header-button"
+                *ngIf="roles!.includes('ADMIN') || roles!.includes('MODERATOR')">
           Dodaj nowy pokój
         </button>
 
-        <button class="header-button" *ngIf="Role == 'ADMIN'">
+        <button class="header-button" *ngIf="roles!.includes('ADMIN')">
           Zarządzanie kontami
         </button>
       </div>
 
-      <div *ngIf="!IsLogged">
+      <div *ngIf="!isLogged">
         <button [routerLink]="'/registration'" class="float-right header-button">
           Rejestracja
         </button>
-        <button class="float-right header-button">
+        <button [routerLink]="'/login'" class="float-right header-button">
           Logowanie
         </button>
       </div>
