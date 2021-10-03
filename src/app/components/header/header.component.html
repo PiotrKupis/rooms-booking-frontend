@@ -12,7 +12,7 @@
       <div *ngIf="isLogged" ngbDropdown class="float-right">
         <div ngbDropdownMenu>
           <button ngbDropdownItem>Profil</button>
-          <button ngbDropdownItem>Wyloguj się</button>
+          <button ngbDropdownItem (click)="logout()">Wyloguj się</button>
         </div>
 
         <button class="header-button" ngbDropdownToggle>
@@ -22,11 +22,11 @@
 
       <div *ngIf="!isLogged" class="float-right">
         <button class="header-button"
-                *ngIf="roles!.includes('ADMIN') || roles!.includes('MODERATOR')">
+                *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">
           Dodaj nowy pokój
         </button>
 
-        <button class="header-button" *ngIf="roles!.includes('ADMIN')">
+        <button class="header-button" *ngIf="roles?.includes('ADMIN')">
           Zarządzanie kontami
         </button>
       </div>
