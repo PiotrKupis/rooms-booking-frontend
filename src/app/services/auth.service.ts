@@ -7,6 +7,7 @@ import {LoginRequest} from "../models/loginRequest";
 import {LoginResponse} from "../models/loginResponse";
 import {map} from "rxjs/operators";
 import {LocalStorageService} from "ngx-webstorage";
+import {RefreshTokenPayload} from "../models/refreshTokenPayload";
 
 @Injectable({
   providedIn: 'root'
@@ -57,9 +58,29 @@ export class AuthService {
         this._isLogged.emit(true);
         this.email.emit(loginResponse.email);
         this.roles.emit(loginResponse.roles);
-
         return true;
       })
     );
+  }
+
+  logout() {
+    let refreshTokenPayload = {
+      refreshToken: this.getRefreshToken(),
+      email: this.getEmail()
+    } as RefreshTokenPayload;
+
+    this.http.post(environment.apiEndpoint + "auth/logout", refreshTokenPayload)
+    .subscribe(() => {
+      console.log("Logged out");
+    },
+    error => {
+      console.error(error);
+    })
+
+    this.localStorage.clear('authToken');
+    this.localStorage.clear('refreshToken');
+    this.localStorage.clear('expireDate');
+    this.localStorage.clear('email');
+    this.localStorage.clear('roles');
   }
 }
