@@ -1,4 +1,4 @@
-export interface LoginResponse {
+export interface AuthenticationResponse {
   authToken: string;
   refreshToken: string;
   expireDate: Date;

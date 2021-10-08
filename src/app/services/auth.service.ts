@@ -4,8 +4,8 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {LoginRequest} from "../models/loginRequest";
-import {LoginResponse} from "../models/loginResponse";
-import {map} from "rxjs/operators";
+import {AuthenticationResponse} from "../models/authenticationResponse";
+import {map, tap} from "rxjs/operators";
 import {LocalStorageService} from "ngx-webstorage";
 import {RefreshTokenPayload} from "../models/refreshTokenPayload";
 
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   login(loginRequest: LoginRequest): Observable<any> {
-    return this.http.post<LoginResponse>(environment.apiEndpoint + "auth/login", loginRequest).pipe(
+    return this.http.post<AuthenticationResponse>(environment.apiEndpoint + "auth/login", loginRequest).pipe(
       map(loginResponse => {
         this.localStorage.store('authToken', loginResponse.authToken);
         this.localStorage.store('refreshToken', loginResponse.refreshToken);
@@ -69,18 +69,36 @@ export class AuthService {
       email: this.getEmail()
     } as RefreshTokenPayload;
 
-    this.http.post(environment.apiEndpoint + "auth/logout", refreshTokenPayload)
+    return this.http.post(environment.apiEndpoint + "auth/logout", refreshTokenPayload)
     .subscribe(() => {
-      console.log("Logged out");
-    },
-    error => {
-      console.error(error);
-    })
+        this.localStorage.clear('authToken');
+        this.localStorage.clear('refreshToken');
+        this.localStorage.clear('expireDate');
+        this.localStorage.clear('email');
+        this.localStorage.clear('roles');
+      },
+      error => {
+        console.error(error);
+      })
+  }
 
-    this.localStorage.clear('authToken');
-    this.localStorage.clear('refreshToken');
-    this.localStorage.clear('expireDate');
-    this.localStorage.clear('email');
-    this.localStorage.clear('roles');
+  refreshToken() {
+    let refreshTokenPayload = {
+      refreshToken: this.getRefreshToken(),
+      email: this.getEmail()
+    } as RefreshTokenPayload;
+
+    return this.http.post<AuthenticationResponse>(environment.apiEndpoint + "auth/refresh-token", refreshTokenPayload).pipe(
+      tap(authResponse => {
+          console.log("Successfully refreshed token")
+          this.localStorage.clear('authToken');
+          this.localStorage.clear('expireDate');
+          this.localStorage.store('authToken', authResponse.authToken);
+          this.localStorage.store('expireDate', authResponse.expireDate);
+        },
+        error => {
+          console.error(error);
+        })
+    );
   }
 }
