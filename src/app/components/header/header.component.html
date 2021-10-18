@@ -3,7 +3,7 @@
 
     <div class="flex-grow-1">
       <button [routerLink]="'/'" class="header-button">
-        RoomsBooking
+        PrimeRoom
       </button>
     </div>
 
@@ -20,10 +20,10 @@
         </button>
       </div>
 
-      <div *ngIf="!isLogged" class="float-right">
-        <button class="header-button"
+      <div *ngIf="isLogged" class="float-right">
+        <button [routerLink]="'/add-resort'" class="header-button"
                 *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">
-          Dodaj nowy pokój
+          Dodaj ośrodek
         </button>
 
         <button class="header-button" *ngIf="roles?.includes('ADMIN')">

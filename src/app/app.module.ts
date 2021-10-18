@@ -14,6 +14,8 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import {TokenInterceptor} from "./token.interceptor";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AddResortComponent} from './components/add-resort/add-resort.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HeaderComponent,
     RegistrationComponent,
     LoginComponent,
+    AddResortComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FormsModule,
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {
