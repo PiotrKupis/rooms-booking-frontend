@@ -68,9 +68,9 @@
           </div>
 
           <div class="form-group row">
-            <label for="name" class="col-md-4 my-auto text-md-right">Numer kierunkowy</label>
+            <label for="countryCode" class="col-md-4 my-auto text-md-right">Numer kierunkowy</label>
             <div class="col-md-6 my-auto">
-              <select [formControlName]="'countryCode'"
+              <select [formControlName]="'countryCode'" id="countryCode"
                       onmousedown="if(this.options.length>8){this.size=8;}"
                       onchange='this.size=0;' onblur="this.size=0;">
                 <option *ngFor="let countryCode of countryCodes"

@@ -4,6 +4,7 @@ import * as countryCallingCodes from '../../../assets/country_calling_codes.json
 import {CountryCode} from "../../models/country-code";
 import {AuthService} from "../../services/auth.service";
 import {RegisterRequest} from "../../models/registerRequest";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-registration',
@@ -13,10 +14,11 @@ import {RegisterRequest} from "../../models/registerRequest";
 export class RegistrationComponent implements OnInit {
 
   registrationForm!: FormGroup;
-  countryCodes: Array<string> = [];
-  defaultSelectedCountryCode: string = "";
   errorMessage: string = "";
   isSuccess: boolean = false;
+
+  countryCodes: Array<string> = [];
+  defaultSelectedCountryCode: string = "";
 
   constructor(private authService: AuthService) {
   }
@@ -26,10 +28,9 @@ export class RegistrationComponent implements OnInit {
     this.countryCodes = Object.values(countryCodesData)
     .map(code => `${code.countryName} (+${code.countryCode})`)
 
-    //set default country code to Poland country code
     let defaultCountryPosition = Object.values(countryCodesData)
-    .map(code => code.countryCode)
-    .indexOf(48);
+    .map(code => code.countryName)
+    .indexOf(environment.defaultCountry);
     this.defaultSelectedCountryCode = this.countryCodes[defaultCountryPosition];
 
     this.registrationForm = new FormGroup({
@@ -59,34 +60,6 @@ export class RegistrationComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-9]{6,12}$/)])
     });
-  }
-
-  get name() {
-    return this.registrationForm.get('name');
-  }
-
-  get surname() {
-    return this.registrationForm.get('surname');
-  }
-
-  get password() {
-    return this.registrationForm.get('password');
-  }
-
-  get repeatedPassword() {
-    return this.registrationForm.get('repeatedPassword');
-  }
-
-  get email() {
-    return this.registrationForm.get('email');
-  }
-
-  get countryCode() {
-    return this.registrationForm.get('countryCode');
-  }
-
-  get phoneNumber() {
-    return this.registrationForm.get('phoneNumber');
   }
 
   register() {
@@ -126,8 +99,36 @@ export class RegistrationComponent implements OnInit {
         if (error.status === 409) {
           this.errorMessage = "Podany adres email jest już zajęty";
         } else {
-          this.errorMessage = "Wystapił błąd poczas łączenia się z serwerem";
+          this.errorMessage = "Wystapił błąd podczas łączenia się z serwerem";
         }
       });
+  }
+
+  get name() {
+    return this.registrationForm.get('name');
+  }
+
+  get surname() {
+    return this.registrationForm.get('surname');
+  }
+
+  get password() {
+    return this.registrationForm.get('password');
+  }
+
+  get repeatedPassword() {
+    return this.registrationForm.get('repeatedPassword');
+  }
+
+  get email() {
+    return this.registrationForm.get('email');
+  }
+
+  get countryCode() {
+    return this.registrationForm.get('countryCode');
+  }
+
+  get phoneNumber() {
+    return this.registrationForm.get('phoneNumber');
   }
 }
