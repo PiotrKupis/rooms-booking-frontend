@@ -33,6 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
             return this.handleAuthError(request, next);
           } else {
             console.log("Error occurred");
+            console.log(error);
             return throwError(error);
           }
         }
