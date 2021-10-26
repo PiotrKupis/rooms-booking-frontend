@@ -6,7 +6,7 @@ import {IDropdownSettings} from "ng-multiselect-dropdown";
 import {environment} from "../../../environments/environment";
 import {ResortService} from "../../services/resort.service";
 import {ToastrService} from "ngx-toastr";
-import {ResortPayload} from "../../models/resort-payload";
+import {ResortPayload} from "../../models/resortPayload";
 
 @Component({
   selector: 'app-add-resort',
