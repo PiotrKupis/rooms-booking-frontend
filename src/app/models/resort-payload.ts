@@ -1,4 +1,4 @@
-export interface AddResortPayload {
+export interface ResortPayload {
   resortName: string;
   country: string;
   city: string;

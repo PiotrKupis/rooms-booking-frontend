@@ -3,10 +3,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as countryCallingCodes from "../../../assets/country_calling_codes.json";
 import {CountryCode} from "../../models/country-code";
 import {IDropdownSettings} from "ng-multiselect-dropdown";
-import {AddResortPayload} from "../../models/add-resort-payload";
 import {environment} from "../../../environments/environment";
 import {ResortService} from "../../services/resort.service";
 import {ToastrService} from "ngx-toastr";
+import {ResortPayload} from "../../models/resort-payload";
 
 @Component({
   selector: 'app-add-resort',
@@ -156,7 +156,7 @@ export class AddResortComponent implements OnInit {
       isParkingAvailable: parkingAvailable,
       parkingFee: parkingFee,
       parkingFeeCurrency: environment.defaultCurrency
-    } as AddResortPayload;
+    } as ResortPayload;
     console.log(addResortPayload);
 
     this.resortService.addResort(addResortPayload)
