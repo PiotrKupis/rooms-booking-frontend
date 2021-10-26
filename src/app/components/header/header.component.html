@@ -26,6 +26,11 @@
           Dodaj ośrodek
         </button>
 
+        <button [routerLink]="'/add-room'" class="header-button"
+                *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">
+          Dodaj pokój
+        </button>
+
         <button class="header-button" *ngIf="roles?.includes('ADMIN')">
           Zarządzanie kontami
         </button>

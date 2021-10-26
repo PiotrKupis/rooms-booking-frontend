@@ -16,6 +16,7 @@ import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AddResortComponent} from './components/add-resort/add-resort.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {AddRoomComponent} from './components/add-room/add-room.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     RegistrationComponent,
     LoginComponent,
     AddResortComponent,
+    AddRoomComponent,
   ],
   imports: [
     BrowserModule,
