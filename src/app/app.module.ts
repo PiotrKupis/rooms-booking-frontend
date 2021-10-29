@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AddResortComponent} from './components/add-resort/add-resort.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {AddRoomComponent} from './components/add-room/add-room.component';
+import {RoomsComponent} from './components/rooms/rooms.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {AddRoomComponent} from './components/add-room/add-room.component';
     LoginComponent,
     AddResortComponent,
     AddRoomComponent,
+    RoomsComponent,
   ],
   imports: [
     BrowserModule,
