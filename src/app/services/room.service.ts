@@ -18,4 +18,8 @@ export class RoomService {
   addRoom(addRoomRequest: AddRoomRequest): Observable<RoomPayload> {
     return this.http.post<RoomPayload>(this.path, addRoomRequest);
   }
+
+  addRoomImage(resortName: string, roomNumber: number, image: FormData): Observable<string> {
+    return this.http.post<string>(this.path + "/" + resortName + "/" + roomNumber, image);
+  }
 }

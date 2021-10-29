@@ -1,1 +1,154 @@
-<p>add-room works!</p>
+<div class="d-flex justify-content-center">
+  <div class="col-md-8">
+
+    <div class="card text-center text-dark bg-light border-dark">
+
+      <div class="section-header h4">
+        Dodawnie nowego pokoju
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="addRoomForm" (ngSubmit)="addRoom()">
+
+          <div class="form-group row">
+            <label for="resortName" class="col-md-4 my-auto text-md-right">Wybierz hotel</label>
+            <div class="col-md-6 my-auto">
+              <select [formControlName]="'resortName'" id="resortName">
+                <option *ngFor="let resort of availableResorts">{{resort}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="roomNumber" class="col-md-4 my-auto text-md-right">Numer pokoju</label>
+            <div class="col-md-6 my-auto">
+              <input type="number" step="1" min="1" [formControlName]="'roomNumber'" id="roomNumber"
+                     class="form-control">
+            </div>
+          </div>
+          <div *ngIf="roomNumber!.invalid && roomNumber!.touched" class="alert alert-danger">
+            <div
+              *ngIf="roomNumber!.errors?.required || roomNumber!.errors?.maxlength || roomNumber!.errors?.minlength || roomNumber!.errors?.pattern">
+              Podano nieprawidłowy numer pokoju
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="price" class="col-md-4 my-auto text-md-right">Cena za dobę</label>
+            <div class="col-md-4 my-auto">
+              <input type="number" step="1" min="1" value="100" [formControlName]="'price'"
+                     id="price" class="form-control">
+            </div>
+            <div class="col-md-2 my-auto">
+              PLN
+            </div>
+          </div>
+          <div *ngIf="price!.invalid && price!.touched" class="alert alert-danger">
+            <div *ngIf="price!.errors?.required">
+              Pole nie może być puste
+            </div>
+            <div
+              *ngIf="price!.errors?.maxlength || price!.errors?.min || price!.errors?.pattern">
+              Podano nieprawidłową cenę
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="roomAmenities" class="col-md-4 my-auto text-md-right">Udogodnienia
+              pokoju</label>
+
+            <div class="col-md-6 my-auto">
+              <ng-multiselect-dropdown [formControlName]="'roomAmenities'" id="roomAmenities"
+                                       [(ngModel)]="selectedAmenities"
+                                       [placeholder]="'Wybierz udogodnienia pokoju'"
+                                       [settings]="dropdownSettings" [data]="amenities">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+
+          <div class="col-md-12 my-4">
+            <h6>Dostępne łóżka:</h6>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-6 my-auto text-md-right">
+              Łóźko pojedyńcze
+            </div>
+            <div class="col-md-6 my-auto">
+              <button type="button" (click)="addSingleBed()">+</button>
+              {{singleBedQuantity}}
+              <button type="button" (click)="subtractSingleBed()">-</button>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-6 my-auto text-md-right">
+              Łóźko podwójne
+            </div>
+            <div class="col-md-6 my-auto">
+              <button type="button" (click)="addDoubleBed()">+</button>
+              {{doubleBedQuantity}}
+              <button type="button" (click)="subtractDoubleBed()">-</button>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-6 my-auto text-md-right">
+              Łóźko typu king-size
+            </div>
+            <div class="col-md-6 my-auto">
+              <button type="button" (click)="addKingSizeBed()">+</button>
+              {{kingSizeBedQuantity}}
+              <button type="button" (click)="subtractKingSizeBed()">-</button>
+            </div>
+          </div>
+
+          <div class="col-md-12 my-4">
+            <h6>Ilu gości może się zatrzymać w pokoju?</h6>
+          </div>
+
+          <div class="col-md-12 my-3">
+
+            <button type="button" (click)="addMaxResidentsNumber()">+</button>
+            {{maxResidentsNumber}}
+            <button type="button" (click)="subtractMaxResidentsNumber()">-</button>
+          </div>
+
+          <div class="col-md-12 my-4">
+            <h6>Zdjęcia pokoju</h6>
+          </div>
+
+          <div class="form-group row-center">
+            <input type="file" #selectedFile (change)="updateSelectedImage($event)"
+                   value="Dodaj zdjęcie">
+            <input type="button" class="btn btn-primary active font-weight-bold"
+                   (click)="uploadImage(selectedFile)"
+                   value="Dodaj zdjęcie">
+          </div>
+
+          <div class="row mx-3" *ngIf="imagesToDisplay.length > 0">
+            <div class="col-md-3 img-container mb-3" *ngFor="let image of imagesToDisplay">
+              <img [src]="image" alt="Room image" width="200" height="200">
+            </div>
+          </div>
+
+
+          <div class="col-md-8 offset-md-2">
+            <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
+              Potwierdź
+            </button>
+            <div class="alert alert-success mt-3" *ngIf="isSuccess">
+              Dodawanie pokoju sie powiodło!
+            </div>
+
+            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
+              {{errorMessage}}
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <br/>
+  </div>
+</div>
