@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
-import {ImagePayload} from "../../models/imagePayload";
+import {DetailedRoomPayload} from "../../models/detailedRoomPayload";
 
 @Component({
   selector: 'app-rooms',
@@ -9,28 +9,27 @@ import {ImagePayload} from "../../models/imagePayload";
 })
 export class RoomsComponent implements OnInit {
 
-  image = {
-    name: '',
-    type: '',
-    bytes: ''
-  } as ImagePayload;
-  is = false;
+  rooms: Array<DetailedRoomPayload> = [];
 
   constructor(private roomService: RoomService) {
   }
 
   ngOnInit(): void {
-    this.roomService.getRoomImages("Studio Rental Central Warszawa1", 210).subscribe(
-      images => {
-        this.is = true;
-        this.image.name = images.name;
-        this.image.type = images.type;
-        this.image.bytes = 'data:image/jpeg;base64,' + images.bytes;
+
+    this.roomService.getAllRooms().subscribe(
+      rooms => {
+        this.rooms = rooms;
+        for (let i = 0; i < this.rooms.length; ++i) {
+          for (let j = 0; j < this.rooms[i].images.length; ++j) {
+            this.rooms[i].images[j].bytes = 'data:image/jpeg;base64,' + this.rooms[i].images[j].bytes;
+          }
+        }
       },
       error => {
         console.log(error);
       }
     )
+
   }
 
 }

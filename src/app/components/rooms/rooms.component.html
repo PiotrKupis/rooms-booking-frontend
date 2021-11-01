@@ -1,7 +1,8 @@
-<p>rooms works!</p>
-
-
-<div *ngIf="is">
-  <img [src]="image.bytes" alt="Room image" width="250" height="250">
-
+<div *ngFor="let room of rooms">
+  {{room.resortName}}
+  <br/><br/><br/><br/>
+  <div *ngFor="let image of room.images">
+    <img [src]="image.bytes" alt="Room image" width="250" height="250">
+  </div>
 </div>
+

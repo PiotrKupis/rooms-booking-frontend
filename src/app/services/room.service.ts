@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {RoomPayload} from "../models/roomPayload";
 import {environment} from "../../environments/environment";
 import {ImagePayload} from "../models/imagePayload";
+import {DetailedRoomPayload} from "../models/detailedRoomPayload";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,11 @@ export class RoomService {
     return this.http.post<string>(this.path + "/" + resortName + "/" + roomNumber, image);
   }
 
-  getRoomImages(resortName: string, roomNumber: number): Observable<ImagePayload> {
-    return this.http.get<ImagePayload>(this.path + "/" + resortName + "/" + roomNumber);
+  getRoomImages(resortName: string, roomNumber: number): Observable<Array<ImagePayload>> {
+    return this.http.get<Array<ImagePayload>>(this.path + "/" + resortName + "/" + roomNumber);
+  }
+
+  getAllRooms(): Observable<Array<DetailedRoomPayload>> {
+    return this.http.get<Array<DetailedRoomPayload>>(this.path);
   }
 }
