@@ -1,14 +1,14 @@
 html {
   padding: 0;
   height: 100%;
-  font-size: 16px;
+  font-size: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 body {
   height: 100%;
-  font-size: 16px;
+  font-size: 22px;
   margin: 0;
   background-image: url("assets/background.jpg");
   background-repeat: no-repeat;
@@ -21,10 +21,10 @@ input.ng-invalid.ng-touched {
 }
 
 .section-header {
-  background-color: #2b73c5;
+  background-color: #264653;
   color: #ffffff;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .alert {
@@ -36,6 +36,24 @@ input.ng-invalid.ng-touched {
 
 select {
   width: inherit;
+}
+
+.img-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+}
+
+.img-container img {
+  max-height: 200px;
+  width: 100%;
+  height: auto;
+}
+
+.icon {
+  max-height: 38px;
+  max-width: 38px;
+  margin-right: 4px;
 }
 
 

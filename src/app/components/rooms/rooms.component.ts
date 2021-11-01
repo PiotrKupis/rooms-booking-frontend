@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
 import {DetailedRoomPayload} from "../../models/detailedRoomPayload";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-rooms',
@@ -11,11 +13,12 @@ export class RoomsComponent implements OnInit {
 
   rooms: Array<DetailedRoomPayload> = [];
 
-  constructor(private roomService: RoomService) {
+  constructor(private roomService: RoomService,
+              private toastr: ToastrService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-
     this.roomService.getAllRooms().subscribe(
       rooms => {
         this.rooms = rooms;
@@ -24,12 +27,16 @@ export class RoomsComponent implements OnInit {
             this.rooms[i].images[j].bytes = 'data:image/jpeg;base64,' + this.rooms[i].images[j].bytes;
           }
         }
+
+        if (this.rooms.length === 0) {
+          this.router.navigateByUrl('/');
+          this.toastr.error("Brak dostępnych pokoi")
+        }
       },
-      error => {
-        console.log(error);
+      () => {
+        this.router.navigateByUrl('/');
+        this.toastr.error("Wystąpił błąd podczas pobierania listy pokoi")
       }
-    )
-
+    );
   }
-
 }
