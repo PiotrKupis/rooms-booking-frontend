@@ -19,7 +19,7 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomService.getAllRooms().subscribe(
+    this.roomService.getAllRooms(3).subscribe(
       rooms => {
         this.rooms = rooms;
         for (let i = 0; i < this.rooms.length; ++i) {

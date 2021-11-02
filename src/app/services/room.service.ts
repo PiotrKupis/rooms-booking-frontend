@@ -29,7 +29,7 @@ export class RoomService {
     return this.http.get<Array<ImagePayload>>(this.path + "/" + resortName + "/" + roomNumber);
   }
 
-  getAllRooms(): Observable<Array<DetailedRoomPayload>> {
-    return this.http.get<Array<DetailedRoomPayload>>(this.path);
+  getAllRooms(imageQuantity: number): Observable<Array<DetailedRoomPayload>> {
+    return this.http.get<Array<DetailedRoomPayload>>(this.path + "?image-quantity=" + imageQuantity);
   }
 }

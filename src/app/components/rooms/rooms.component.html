@@ -10,7 +10,7 @@
 
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 img-container" *ngFor="let image of room.images.slice(0, 3)">
+            <div class="col-md-4 img-container" *ngFor="let image of room.images">
               <img [src]="image.bytes" alt="Room image">
             </div>
           </div>
@@ -40,7 +40,8 @@
                 </div>
 
                 <div *ngIf="room.kingSizeBedQuantity>0">
-                  <img src="assets/icons/king-size-bed.png" class="icon" alt="king size type bed icon">
+                  <img src="assets/icons/king-size-bed.png" class="icon"
+                       alt="king size type bed icon">
                   {{room.kingSizeBedQuantity}} x łóżko typu king size
                 </div>
               </div>
