@@ -18,6 +18,7 @@ import {AddResortComponent} from './components/add-resort/add-resort.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {AddRoomComponent} from './components/add-room/add-room.component';
 import {RoomsComponent} from './components/rooms/rooms.component';
+import { RoomComponent } from './components/room/room.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {RoomsComponent} from './components/rooms/rooms.component';
     AddResortComponent,
     AddRoomComponent,
     RoomsComponent,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,
