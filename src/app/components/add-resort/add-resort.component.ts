@@ -50,16 +50,15 @@ export class AddResortComponent implements OnInit {
     .map(hour => this.formatHour(hour));
 
     this.amenities = [
-      {key: 1, value: 'bar'},
-      {key: 2, value: 'sauna'},
-      {key: 3, value: 'ogród'},
-      {key: 4, value: 'taras'},
-      {key: 5, value: 'jacuzzi'},
-      {key: 6, value: 'ogrzewanie'},
-      {key: 7, value: 'darmowe WiFi"'},
-      {key: 8, value: 'klimatyzacja'},
-      {key: 9, value: 'basen'},
-      {key: 10, value: 'parking'}
+      {key: 1, value: 'Bar'},
+      {key: 2, value: 'Sauna'},
+      {key: 3, value: 'Ogród'},
+      {key: 4, value: 'Taras'},
+      {key: 5, value: 'Jacuzzi'},
+      {key: 6, value: 'Ogrzewanie'},
+      {key: 7, value: 'Darmowe WiFi"'},
+      {key: 8, value: 'Basen'},
+      {key: 9, value: 'Parking'}
     ];
 
     this.dropdownSettings = {
@@ -135,7 +134,7 @@ export class AddResortComponent implements OnInit {
 
     let amenityEnums = [];
     for (let i = 0; i < this.resortAmenities?.value.length; ++i) {
-      let amenityEnum = this.convertAmenity(this.resortAmenities?.value[i].value);
+      let amenityEnum = this.convertStringToResortAmenity(this.resortAmenities?.value[i].value);
       if (amenityEnum !== "UNDEFINED") {
         amenityEnums.push(amenityEnum);
       }
@@ -183,31 +182,8 @@ export class AddResortComponent implements OnInit {
     return formattedHour + ":00";
   }
 
-  convertAmenity(amenity: string): string {
-    switch (amenity) {
-      case 'bar':
-        return "BAR";
-      case 'sauna':
-        return "SAUNA";
-      case 'ogród':
-        return "GARDEN";
-      case 'taras':
-        return "TERRACE";
-      case 'jacuzzi':
-        return "JACUZZI";
-      case 'ogrzewanie':
-        return "HEATING";
-      case 'darmowe WiFi':
-        return "FREE_WIFI";
-      case 'klimatyzacja':
-        return "AIR_CONDITIONING";
-      case 'basen':
-        return "SWIMMING_POOL";
-      case 'parking':
-        return "PARKING";
-      default:
-        return "UNDEFINED";
-    }
+  convertStringToResortAmenity(amenity: string): string {
+    return this.resortService.convertStringToResortAmenity(amenity);
   }
 
   get resortName() {

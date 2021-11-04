@@ -54,17 +54,17 @@ export class AddRoomComponent implements OnInit {
     });
 
     this.amenities = [
-      {key: 1, value: 'klimatyzacja'},
-      {key: 2, value: 'aneks kuchenny'},
-      {key: 3, value: 'kuchnia'},
-      {key: 4, value: 'balkon'},
-      {key: 5, value: 'TV'},
-      {key: 6, value: 'pralka'},
-      {key: 7, value: 'netflix'},
-      {key: 8, value: 'prywatna łazienka'},
-      {key: 9, value: 'lodówka'},
-      {key: 10, value: 'mikrofalówka'},
-      {key: 11, value: 'żelazko'}
+      {key: 1, value: 'Klimatyzacja'},
+      {key: 2, value: 'Aneks kuchenny'},
+      {key: 3, value: 'Kuchnia'},
+      {key: 4, value: 'Balkon'},
+      {key: 5, value: 'Telewizor'},
+      {key: 6, value: 'Pralka'},
+      {key: 7, value: 'Netflix'},
+      {key: 8, value: 'Prywatna łazienka'},
+      {key: 9, value: 'Lodówka'},
+      {key: 10, value: 'Mikrofalówka'},
+      {key: 11, value: 'Żelazko'}
     ];
 
     this.dropdownSettings = {
@@ -148,14 +148,14 @@ export class AddRoomComponent implements OnInit {
       return;
     }
 
-    if (this.imagesToSend.length < 3) {
-      this.errorMessage = "Dodaj przynajmniej 3 zdjęcia pokoju, aby móc go dodać";
+    if (this.imagesToSend.length < 4) {
+      this.errorMessage = "Dodaj przynajmniej 4 zdjęcia pokoju, aby móc go dodać";
       return;
     }
 
     let amenityEnums = [];
     for (let i = 0; i < this.roomAmenities?.value.length; ++i) {
-      let amenityEnum = this.convertAmenity(this.roomAmenities?.value[i].value);
+      let amenityEnum = this.convertStringToRoomAmenity(this.roomAmenities?.value[i].value);
       if (amenityEnum !== "UNDEFINED") {
         amenityEnums.push(amenityEnum);
       }
@@ -212,33 +212,8 @@ export class AddRoomComponent implements OnInit {
     )
   }
 
-  convertAmenity(amenity: string): string {
-    switch (amenity) {
-      case 'klimatyzacja':
-        return "AIR_CONDITIONING";
-      case 'aneks kuchenny':
-        return "KITCHENETTE";
-      case 'kuchnia':
-        return "KITCHEN";
-      case 'balkon':
-        return "BALCONY";
-      case 'TV':
-        return "TV";
-      case 'pralka':
-        return "WASHER";
-      case 'netflix':
-        return "NETFLIX";
-      case 'prywatna łazienka':
-        return "PRIVATE_BATHROOM";
-      case 'lodówka':
-        return "FRIDGE";
-      case 'mikrofalówka':
-        return "MICROWAVE";
-      case 'żelazko':
-        return "IRON";
-      default:
-        return "UNDEFINED";
-    }
+  convertStringToRoomAmenity(amenity: string): string {
+    return this.roomService.convertStringToRoomAmenity(amenity);
   }
 
   addSingleBed() {

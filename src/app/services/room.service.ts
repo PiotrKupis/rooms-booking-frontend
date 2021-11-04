@@ -14,6 +14,20 @@ export class RoomService {
 
   path = environment.apiEndpoint + "room";
 
+  roomAmenities = new Map([
+    ["AIR_CONDITIONING", "Klimatyzacja"],
+    ["KITCHENETTE", "Aneks kuchenny"],
+    ["KITCHEN", "Kuchnia"],
+    ["BALCONY", "Balkon"],
+    ["TV", "Telewizor"],
+    ["WASHER", "Pralka"],
+    ["NETFLIX", "Netflix"],
+    ["PRIVATE_BATHROOM", "Prywatna łazienka"],
+    ["FRIDGE", "Lodówka"],
+    ["MICROWAVE", "Mikrofalówka"],
+    ["IRON", "Żelazko"]
+  ])
+
   constructor(private http: HttpClient) {
   }
 
@@ -22,14 +36,34 @@ export class RoomService {
   }
 
   addRoomImage(resortName: string, roomNumber: number, image: FormData): Observable<string> {
-    return this.http.post<string>(this.path + "/" + resortName + "/" + roomNumber, image);
+    return this.http.post<string>(this.path + "/" + resortName + "/" + roomNumber + "/photo", image);
   }
 
   getRoomImages(resortName: string, roomNumber: number): Observable<Array<ImagePayload>> {
-    return this.http.get<Array<ImagePayload>>(this.path + "/" + resortName + "/" + roomNumber);
+    return this.http.get<Array<ImagePayload>>(this.path + "/" + resortName + "/" + roomNumber + "/photo");
   }
 
   getAllRooms(imageQuantity: number): Observable<Array<DetailedRoomPayload>> {
     return this.http.get<Array<DetailedRoomPayload>>(this.path + "?image-quantity=" + imageQuantity);
+  }
+
+  getRoom(resortName: string, roomNumber: number): Observable<DetailedRoomPayload> {
+    return this.http.get<DetailedRoomPayload>(this.path + "/" + resortName + "/" + roomNumber);
+  }
+
+  convertRoomAmenityToString(amenityEnum: string): string {
+    if (this.roomAmenities.has(amenityEnum)) {
+      return <string>this.roomAmenities.get(amenityEnum);
+    } else {
+      return "UNDEFINED"
+    }
+  }
+
+  convertStringToRoomAmenity(amenity: string): string {
+    for (let [key, value] of this.roomAmenities.entries()) {
+      if (value === amenity)
+        return key;
+    }
+    return "UNDEFINED";
   }
 }
