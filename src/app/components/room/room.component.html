@@ -3,12 +3,12 @@
 
     <div class="card text-center text-dark bg-light border-dark mb-2">
 
-      <div class="section-header font-weight-bold h4">
+      <div class="section-header font-weight-bold h5">
         {{room.resortName}}
       </div>
 
       <div class="card-body">
-        <div class="row mx-2">
+        <div class="row mx-2 mt-n3">
           <div class="col-md-3 img-container" *ngFor="let image of room.images.slice(0, 3)">
             <img [src]="image.bytes" alt="Room image">
           </div>
