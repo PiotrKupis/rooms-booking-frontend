@@ -1,10 +1,150 @@
-<!--<div *ngFor="let room of rooms">-->
-<!--  {{room.resortName}}-->
-<!--  <br/><br/><br/><br/>-->
-<!--  <div *ngFor="let image of room.images">-->
-<!--    <img [src]="image.bytes" alt="Room image" width="250" height="250">-->
-<!--  </div>-->
-<!--</div>-->
+<div class="container d-flex justify-content-center">
+  <div class="col-md-12">
 
+    <div class="card text-center text-dark bg-light border-dark mb-2">
 
-<p>room works!</p>
+      <div class="section-header font-weight-bold h4">
+        {{room.resortName}}
+      </div>
+
+      <div class="card-body">
+        <div class="row mx-2">
+          <div class="col-md-3 img-container" *ngFor="let image of room.images.slice(0, 3)">
+            <img [src]="image.bytes" alt="Room image">
+          </div>
+          <div class="col-md-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-secondary btn-lg w-100">
+              <b>+{{room.images.length - 3}} zdjęcia</b>
+            </button>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-md-6">
+            <img src="assets/icons/localisation.png" class="icon" alt="Localisation icon">
+            {{room.country}}, {{room.city}} ul. {{room.street}} {{room.streetNumber}}
+          </div>
+          <div class="col-md-6">
+            <img src="assets/icons/money.png" class="icon" alt="money icon">
+            Cena za dobę pobytu: <b>{{ room.price | number : '1.2-2'}} zł</b>
+          </div>
+        </div>
+
+        <div class="section-header font-weight-bold h5">
+          Łóżka
+        </div>
+
+        <div class="row my-3">
+          <div class="col-md-12">
+            <div class="d-flex justify-content-around">
+              <div *ngIf="room.singleBedQuantity>0">
+                <img src="assets/icons/single-bed.png" class="icon" alt="single bed icon">
+                {{room.singleBedQuantity}} x łóżko pojedyncze
+              </div>
+
+              <div *ngIf="room.doubleBedQuantity>0">
+                <img src="assets/icons/double-bed.png" class="icon" alt="double bed icon">
+                {{room.doubleBedQuantity}} x łóżko podwójne
+              </div>
+
+              <div *ngIf="room.kingSizeBedQuantity>0">
+                <img src="assets/icons/king-size-bed.png" class="icon"
+                     alt="king size type bed icon">
+                {{room.kingSizeBedQuantity}} x łóżko typu king size
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header font-weight-bold h5">
+          Udogodnienia pokoju
+        </div>
+
+        <div class="row mx-2">
+          <div class="col-md-4 my-2 justify-content-around"
+               *ngFor="let amenity of room.roomAmenities">
+            <img src="assets/icons/amenities/{{amenity}}.png" class="icon"
+                 alt="Icon of {{amenity}}">
+            {{convertRoomAmenityToString(amenity)}}
+          </div>
+
+          <div class="col-md-4 my-2 justify-content-around"
+               *ngFor="let amenity of resort.resortAmenities">
+            <img src="assets/icons/amenities/{{amenity}}.png" class="icon"
+                 alt="Icon of {{amenity}}">
+            {{convertResortAmenityToString(amenity)}}
+          </div>
+        </div>
+
+        <div class="row my-3 d-flex justify-content-center" *ngIf="resort.isParkingAvailable">
+          <img src="assets/icons/parking.png" class="icon mr-2" alt="Icon of parking">
+          <div *ngIf="!isParkingFree()">
+            Parking płatny <b>{{resort.parkingFee | number : '1.2-2'}} zł</b>/doba
+          </div>
+          <div *ngIf="isParkingFree()">
+            Parking bezpłatny
+          </div>
+        </div>
+
+        <div class="section-header mt-2 font-weight-bold h5">
+          Zadady pobytu
+        </div>
+
+        <div class="row my-3 justify-content-around">
+          <div class="col-md-6">
+            <img src="assets/icons/clock.png" class="icon"
+                 alt="Icon of check-in time ">
+            Zameldowanie od godz <b>{{resort.hotelDayStart}}</b>
+          </div>
+
+          <div class="col-md-6">
+            <img src="assets/icons/clock.png" class="icon"
+                 alt="Icon of check-out time ">
+            Wymeldowanie do godz <b>{{resort.hotelDayEnd}}</b>
+          </div>
+        </div>
+
+        <div class="row my-3 d-flex justify-content-center">
+          <img src="assets/icons/cigarette.png" class="icon mr-2" alt="Icon of cigarette">
+          <div *ngIf="!resort.smokingPermitted">
+            Palenie na terenie hotelu jest zabronione
+          </div>
+          <div *ngIf="resort.smokingPermitted">
+            Palenie na terenie hotelu jest dozwolone
+          </div>
+        </div>
+
+        <div class="row my-3 d-flex justify-content-center">
+          <img src="assets/icons/party.png" class="icon mr-2" alt="Icon of party">
+          <div *ngIf="!resort.partyPermitted">
+            Organizacja imprez jest zabroniona
+          </div>
+          <div *ngIf="resort.partyPermitted">
+            Organizacja imprez jest dozwolona
+          </div>
+        </div>
+
+        <div class="row my-3 d-flex justify-content-center">
+          <img src="assets/icons/dog.png" class="icon mr-2" alt="Icon of dog">
+          <div *ngIf="!resort.animalsPermitted">
+            Posiadanie zwierząt jest zabronione
+          </div>
+          <div *ngIf="resort.animalsPermitted">
+            Posiadanie zwierząt jest dozwolone
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <button class="btn btn-outline-secondary btn-lg font-weight-bold w-50">
+              Zarezerwuj
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <br/>
+  </div>
+</div>
+
