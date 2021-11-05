@@ -10,7 +10,7 @@ body {
   height: 100%;
   font-size: 20px;
   margin: 0;
-  background-image: url("assets/background.jpg");
+  background-image: url("assets/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -21,6 +21,15 @@ input.ng-invalid.ng-touched {
 }
 
 .section-header {
+  background-color: #193F78;
+  max-height: 65px;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 1px;
+  border: 1px solid #000000;
+}
+
+.body-header {
   background-color: #264653;
   color: #ffffff;
   padding-top: 12px;
@@ -58,5 +67,8 @@ select {
   margin-right: 4px;
 }
 
+.nav-item a:hover {
+  cursor: pointer
+}
 
 

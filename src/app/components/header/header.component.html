@@ -1,50 +1,46 @@
-<header class="mb-4">
-  <nav class="navbar fixed-top header">
+<header class="mb-3">
+  <nav class="navbar navbar-expand-lg navbar-dark section-header fixed-top">
 
-    <div class="flex-grow-1">
-      <button [routerLink]="'/'" class="header-button">
-        PrimeRoom
-      </button>
+    <a class="navbar-brand d-flex align-items-center ml-5" href="/">
+      <img src="assets/icons/logo.png" width="40" height="34"
+           class="d-inline-block align-top mr-2" alt="Logo">
+      PrimeRoom
+    </a>
+
+    <div class="collapse navbar-collapse  justify-content-end">
+
+      <ul class="navbar-nav" *ngIf="isLogged">
+
+        <li class="nav-item mx-4 mx-lg-5">
+          <a class="nav-link" [routerLink]="'/add-resort'"
+             *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">Dodaj hotel</a>
+        </li>
+
+        <li class="nav-item mx-4 mx-lg-5">
+          <a class="nav-link" [routerLink]="'/add-room'"
+             *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">Dodaj pokój</a>
+        </li>
+
+        <li class="nav-item dropdown mx-4 mx-lg-5">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Konto
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" (click)="logout()">Wyloguj się</a>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav d-flex" *ngIf="!isLogged">
+        <li class="nav-item mx-4 mx-lg-5">
+          <a class="nav-link" [routerLink]="'/registration'">Rejestracja</a>
+        </li>
+        <li class="nav-item mx-4 mx-lg-5">
+          <a class="nav-link" [routerLink]="'/login'">Logowanie</a>
+        </li>
+      </ul>
     </div>
 
-    <div class="flex-grow-1 float-right">
-
-      <div *ngIf="isLogged" ngbDropdown class="float-right">
-        <div ngbDropdownMenu>
-          <button ngbDropdownItem>Profil</button>
-          <button ngbDropdownItem (click)="logout()">Wyloguj się</button>
-        </div>
-
-        <button class="header-button" ngbDropdownToggle>
-          Moje konto
-        </button>
-      </div>
-
-      <div *ngIf="isLogged" class="float-right">
-        <button [routerLink]="'/add-resort'" class="header-button"
-                *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">
-          Dodaj ośrodek
-        </button>
-
-        <button [routerLink]="'/add-room'" class="header-button"
-                *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">
-          Dodaj pokój
-        </button>
-
-        <button class="header-button" *ngIf="roles?.includes('ADMIN')">
-          Zarządzanie kontami
-        </button>
-      </div>
-
-      <div *ngIf="!isLogged">
-        <button [routerLink]="'/registration'" class="float-right header-button">
-          Rejestracja
-        </button>
-        <button [routerLink]="'/login'" class="float-right header-button">
-          Logowanie
-        </button>
-      </div>
-
-    </div>
   </nav>
 </header>
