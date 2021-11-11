@@ -1,13 +1,12 @@
-<div class="d-flex justify-content-center">
-  <div class="col-md-6">
+<div class="container d-flex justify-content-center mt-lg-4">
+  <div class="col-md-9">
 
     <div class="card text-center text-dark bg-light border-dark">
-
       <div class="body-header h4">
         Rejestracja
       </div>
 
-      <div class="card-body">
+      <div class="card-body h6">
         <form [formGroup]="registrationForm" (ngSubmit)="register()">
 
           <div class="form-group row">
@@ -73,7 +72,7 @@
               <select [formControlName]="'countryCode'" id="countryCode"
                       onmousedown="if(this.options.length>8){this.size=8;}"
                       onchange='this.size=0;' onblur="this.size=0;">
-                <option *ngFor="let countryCode of countryCodes"
+                <option class="text-center" *ngFor="let countryCode of countryCodes"
                         [selected]="countryCode == defaultSelectedCountryCode">{{countryCode}}</option>
               </select>
             </div>
@@ -130,17 +129,18 @@
             </div>
           </div>
 
-          <div class="col-md-8 offset-md-2">
-            <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
-              Zarejestruj się
-            </button>
+          <div class="row">
+            <div class="col-md-12 mt-2">
+              <button type="submit" class="btn btn-outline-secondary font-weight-bold w-50">
+                Zarejestruj się
+              </button>
 
-            <div class="alert alert-success mt-3" *ngIf="isSuccess">
-              Rejestracja sie powiodła!
-            </div>
-
-            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
-              {{errorMessage}}
+              <div class="alert alert-success mt-3" *ngIf="isSuccess">
+                Rejestracja sie powiodła!
+              </div>
+              <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
 

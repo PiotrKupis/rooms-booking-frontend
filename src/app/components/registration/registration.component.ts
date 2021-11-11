@@ -26,6 +26,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     let countryCodesData = countryCallingCodes as CountryCode[];
     this.countryCodes = Object.values(countryCodesData)
+    .filter(code => code.countryCode !== undefined)
     .map(code => `${code.countryName} (+${code.countryCode})`)
 
     let defaultCountryPosition = Object.values(countryCodesData)

@@ -40,24 +40,8 @@
     "countryCode": 43
   },
   {
-    "countryName": "Azerbejdżan",
-    "countryCode": 994
-  },
-  {
-    "countryName": "Bahrajn",
-    "countryCode": 973
-  },
-  {
-    "countryName": "Bangladesz",
-    "countryCode": 880
-  },
-  {
     "countryName": "Belgia",
     "countryCode": 32
-  },
-  {
-    "countryName": "Benin",
-    "countryCode": 229
   },
   {
     "countryName": "Białoruś",
@@ -72,10 +56,6 @@
     "countryCode": 387
   },
   {
-    "countryName": "Botswana",
-    "countryCode": 267
-  },
-  {
     "countryName": "Brazylia",
     "countryCode": 55
   },
@@ -86,14 +66,6 @@
   {
     "countryName": "Bułgaria",
     "countryCode": 359
-  },
-  {
-    "countryName": "Burkina Faso",
-    "countryCode": 226
-  },
-  {
-    "countryName": "Burundi",
-    "countryCode": 257
   },
   {
     "countryName": "Chile",
@@ -132,24 +104,12 @@
     "countryCode": 593
   },
   {
-    "countryName": "Erytrea",
-    "countryCode": 291
-  },
-  {
     "countryName": "Estonia",
     "countryCode": 372
   },
   {
     "countryName": "Etiopia",
     "countryCode": 251
-  },
-  {
-    "countryName": "Falklandy",
-    "countryCode": 500
-  },
-  {
-    "countryName": "Fidżi",
-    "countryCode": 679
   },
   {
     "countryName": "Filipiny",
@@ -162,14 +122,6 @@
   {
     "countryName": "Francja",
     "countryCode": 33
-  },
-  {
-    "countryName": "Gambia",
-    "countryCode": 220
-  },
-  {
-    "countryName": "Ghana",
-    "countryCode": 233
   },
   {
     "countryName": "Gibraltar",
@@ -186,14 +138,6 @@
   {
     "countryName": "Gruzja",
     "countryCode": 995
-  },
-  {
-    "countryName": "Gwinea",
-    "countryCode": 224
-  },
-  {
-    "countryName": "Gwinea Równikowa",
-    "countryCode": 240
   },
   {
     "countryName": "Hiszpania",
@@ -248,20 +192,12 @@
     "countryCode": 962
   },
   {
-    "countryName": "Kambodża",
-    "countryCode": 588
-  },
-  {
     "countryName": "Kamerun",
     "countryCode": 237
   },
   {
     "countryName": "Kanada",
     "countryCode": 1
-  },
-  {
-    "countryName": "Kanaryjskie Wyspy",
-    "countryCode": 34
   },
   {
     "countryName": "Katar",
@@ -272,68 +208,16 @@
     "countryCode": 7
   },
   {
-    "countryName": "Kenia",
-    "countryCode": 254
-  },
-  {
-    "countryName": "Kirgistan",
-    "countryCode": 996
-  },
-  {
-    "countryName": "Kiribati",
-    "countryCode": 686
-  },
-  {
     "countryName": "Kolumbia",
     "countryCode": 57
-  },
-  {
-    "countryName": "Kongo",
-    "countryCode": 242
-  },
-  {
-    "countryName": "Kongo Republika Demokrat.",
-    "countryCode": 234
   },
   {
     "countryName": "Korea Południowa",
     "countryCode": 82
   },
   {
-    "countryName": "Koreańska RL-D",
-    "countryCode": 850
-  },
-  {
-    "countryName": "Kostaryka",
-    "countryCode": 506
-  },
-  {
-    "countryName": "Kuba",
-    "countryCode": 53
-  },
-  {
     "countryName": "Kuwejt",
     "countryCode": 965
-  },
-  {
-    "countryName": "Laos",
-    "countryCode": 856
-  },
-  {
-    "countryName": "Lesotho",
-    "countryCode": 266
-  },
-  {
-    "countryName": "Liban",
-    "countryCode": 961
-  },
-  {
-    "countryName": "Liberia",
-    "countryCode": 231
-  },
-  {
-    "countryName": "Libia",
-    "countryCode": 218
   },
   {
     "countryName": "Liechtenstein",
@@ -356,10 +240,6 @@
     "countryCode": 389
   },
   {
-    "countryName": "Madagaskar",
-    "countryCode": 261
-  },
-  {
     "countryName": "Malediwy",
     "countryCode": 960
   },
@@ -380,14 +260,6 @@
     "countryCode": 212
   },
   {
-    "countryName": "Mauretania",
-    "countryCode": 222
-  },
-  {
-    "countryName": "Mauritius",
-    "countryCode": 230
-  },
-  {
     "countryName": "Meksyk",
     "countryCode": 52
   },
@@ -404,28 +276,12 @@
     "countryCode": 976
   },
   {
-    "countryName": "Mozambik",
-    "countryCode": 258
-  },
-  {
-    "countryName": "Namibia",
-    "countryCode": 264
-  },
-  {
-    "countryName": "Nauru",
-    "countryCode": 674
-  },
-  {
     "countryName": "Nepal",
     "countryCode": 977
   },
   {
     "countryName": "Niemcy",
     "countryCode": 49
-  },
-  {
-    "countryName": "Niger",
-    "countryCode": 227
   },
   {
     "countryName": "Nigeria",
@@ -456,20 +312,12 @@
     "countryCode": 507
   },
   {
-    "countryName": "Papua Nowa Gwinea",
-    "countryCode": 675
-  },
-  {
     "countryName": "Paragwaj",
     "countryCode": 595
   },
   {
     "countryName": "Peru",
     "countryCode": 51
-  },
-  {
-    "countryName": "Polinezja Francuska",
-    "countryCode": 689
   },
   {
     "countryName": "Polska",
@@ -480,44 +328,12 @@
     "countryCode": 351
   },
   {
-    "countryName": "Republika Południowej Afryki",
-    "countryCode": 27
-  },
-  {
-    "countryName": "Republika Środkowoafrykańska",
-    "countryCode": 236
-  },
-  {
     "countryName": "Rosja",
     "countryCode": 7
   },
   {
     "countryName": "Rumunia",
     "countryCode": 40
-  },
-  {
-    "countryName": "Rwanda",
-    "countryCode": 250
-  },
-  {
-    "countryName": "Salwador",
-    "countryCode": 503
-  },
-  {
-    "countryName": "San Marino",
-    "countryCode": 378
-  },
-  {
-    "countryName": "Senegal",
-    "countryCode": 221
-  },
-  {
-    "countryName": "Seszele",
-    "countryCode": 248
-  },
-  {
-    "countryName": "Sierra Leone",
-    "countryCode": 232
   },
   {
     "countryName": "Singapur",
@@ -532,20 +348,8 @@
     "countryCode": 386
   },
   {
-    "countryName": "Somalia",
-    "countryCode": 252
-  },
-  {
-    "countryName": "Sri Lanka",
-    "countryCode": 94
-  },
-  {
-    "countryName": "Stany Zjednoczone Ameryki",
+    "countryName": "USA",
     "countryCode": 1
-  },
-  {
-    "countryName": "Syria",
-    "countryCode": 963
   },
   {
     "countryName": "Szwajcaria",
@@ -556,32 +360,12 @@
     "countryCode": 46
   },
   {
-    "countryName": "Tadżykistan",
-    "countryCode": 992
-  },
-  {
     "countryName": "Tajlandia",
     "countryCode": 66
   },
   {
     "countryName": "Tajwan",
     "countryCode": 886
-  },
-  {
-    "countryName": "Tanzania",
-    "countryCode": 255
-  },
-  {
-    "countryName": "Togo",
-    "countryCode": 228
-  },
-  {
-    "countryName": "Tokelau",
-    "countryCode": 690
-  },
-  {
-    "countryName": "Tonga",
-    "countryCode": 676
   },
   {
     "countryName": "Tunezja",
@@ -592,20 +376,8 @@
     "countryCode": 90
   },
   {
-    "countryName": "Turkmenistan",
-    "countryCode": 993
-  },
-  {
-    "countryName": "Uganda",
-    "countryCode": 256
-  },
-  {
     "countryName": "Ukraina",
     "countryCode": 380
-  },
-  {
-    "countryName": "Urugwaj",
-    "countryCode": 598
   },
   {
     "countryName": "Uzbekistan",
@@ -630,25 +402,5 @@
   {
     "countryName": "Włochy",
     "countryCode": 39
-  },
-  {
-    "countryName": "Wybrzeże Kości Słoniowej",
-    "countryCode": 225
-  },
-  {
-    "countryName": "Zambia",
-    "countryCode": 260
-  },
-  {
-    "countryName": "Zanzibar",
-    "countryCode": 259
-  },
-  {
-    "countryName": "Zielonego Przylądka Wyspy",
-    "countryCode": 238
-  },
-  {
-    "countryName": "Zimbabwe",
-    "countryCode": 263
   }
 ]
