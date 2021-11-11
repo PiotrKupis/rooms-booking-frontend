@@ -18,6 +18,7 @@ export class AddResortComponent implements OnInit {
   addResortForm!: FormGroup;
   errorMessage: string = "";
   isSuccess: boolean = false;
+  step: number = 1;
 
   countries: Array<string> = [];
   defaultSelectedCountry = environment.defaultCountry;
@@ -43,10 +44,10 @@ export class AddResortComponent implements OnInit {
     this.countries = Object.values(countryCallingCodes as CountryCode[])
     .map(code => code.countryName);
 
-    this.checkOutHours = Array.from(new Array(7), (x, i) => i + 8)
+    this.checkInHours = Array.from(new Array(10), (x, i) => i + 13)
     .map(hour => this.formatHour(hour));
 
-    this.checkInHours = Array.from(new Array(13), (x, i) => i + 12)
+    this.checkOutHours = Array.from(new Array(6), (x, i) => i + 9)
     .map(hour => this.formatHour(hour));
 
     this.amenities = [
@@ -104,6 +105,7 @@ export class AddResortComponent implements OnInit {
 
     if (!this.addResortForm.valid) {
       this.addResortForm.markAllAsTouched();
+      this.errorMessage = "Podano nieprawidłowe dane";
       return;
     }
 
@@ -160,18 +162,18 @@ export class AddResortComponent implements OnInit {
 
     this.resortService.addResort(addResortPayload)
     .subscribe(() => {
-        this.isSuccess = true;
-        this.toastr.success("Dodano nowy ośrodek");
-        this.addResortForm.reset();
-        this.selectedAmenities = [];
-      },
-      error => {
-        if (error.status === 409) {
-          this.errorMessage = "Podana nazwa ośrodka jest już zajęta";
-        } else {
-          this.errorMessage = "Wystapił błąd podczas łączenia się z serwerem";
-        }
-      });
+          this.isSuccess = true;
+          this.toastr.success("Dodano nowy ośrodek");
+          this.addResortForm.reset();
+          this.selectedAmenities = [];
+        },
+        error => {
+          if (error.status === 409) {
+            this.errorMessage = "Podana nazwa ośrodka jest już zajęta";
+          } else {
+            this.errorMessage = "Wystapił błąd podczas łączenia się z serwerem";
+          }
+        });
   }
 
   formatHour(hour: number): string {
@@ -180,6 +182,14 @@ export class AddResortComponent implements OnInit {
       formattedHour = "0" + formattedHour;
     }
     return formattedHour + ":00";
+  }
+
+  continue() {
+    this.step = this.step + 1;
+  }
+
+  backward() {
+    this.step = this.step - 1;
   }
 
   convertStringToResortAmenity(amenity: string): string {

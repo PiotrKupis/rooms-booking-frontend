@@ -1,221 +1,278 @@
-<div class="d-flex justify-content-center">
-  <div class="col-md-8">
+<div class="container-fluid d-flex justify-content-center mt-2">
+  <div class="col-md-7">
 
     <div class="card text-center text-dark bg-light border-dark">
-
       <div class="body-header h4">
-        Dodawnie nowego ośrodka
+        Dodawnie nowego hotelu
       </div>
 
       <div class="card-body">
         <form [formGroup]="addResortForm" (ngSubmit)="addResort()">
 
-          <div class="form-group row">
-            <label for="resortName" class="col-md-4 my-auto text-md-right">Nazwa ośrodka</label>
-            <div class="col-md-6 my-auto">
-              <input type="text" [formControlName]="'resortName'" id="resortName"
-                     class="form-control">
+          <div *ngIf="step === 1">
+            <div class="form-group row">
+              <label for="resortName" class="col-md-4 my-auto text-md-right">Nazwa hotelu</label>
+              <div class="col-md-6 my-auto">
+                <input type="text" [formControlName]="'resortName'" id="resortName"
+                       class="form-control">
+              </div>
             </div>
-          </div>
-          <div *ngIf="resortName!.invalid && resortName!.touched" class="alert alert-danger">
-            <div *ngIf="resortName!.errors?.required">
-              Pole nie może być puste
+            <div *ngIf="resortName!.invalid && resortName!.touched" class="alert alert-danger">
+              <div *ngIf="resortName!.errors?.required">
+                Pole nie może być puste
+              </div>
+              <div *ngIf="resortName!.errors?.maxlength">
+                Nazwa hotelu nie może być dłuższa niż 150 znaków
+              </div>
+              <div *ngIf="resortName!.errors?.minlength">
+                Nazwa hotelu musi mieć przynajmnniej 3 znaki
+              </div>
             </div>
-            <div *ngIf="resortName!.errors?.maxlength">
-              Nazwa ośrodka nie może być dłuższa niż 150 znaków
-            </div>
-            <div *ngIf="resortName!.errors?.minlength">
-              Nazwa ośrodka musi mieć przynajmnniej 3 znaki
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="country" class="col-md-4 my-auto text-md-right">Państwo</label>
-            <div class="col-md-6 my-auto">
-              <select [formControlName]="'country'" id="country"
-                      onmousedown="if(this.options.length>8){this.size=8;}"
-                      onchange='this.size=0;' onblur="this.size=0;">
-                <option *ngFor="let country of countries"
-                        [selected]="country == defaultSelectedCountry">{{country}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="city" class="col-md-4 my-auto text-md-right">Miasto</label>
-            <div class="col-md-6 my-auto">
-              <input type="text" [formControlName]="'city'" id="city"
-                     class="form-control">
-            </div>
-          </div>
-          <div *ngIf="city!.invalid && city!.touched" class="alert alert-danger">
-            <div *ngIf="city!.errors?.required">
-              Pole nie może być puste
-            </div>
-            <div *ngIf="city!.errors?.maxlength">
-              Nazwa miasta nie może być dłuższa niż 80 znaków
-            </div>
-            <div *ngIf="city!.errors?.minlength">
-              Nazwa miasta musi mieć przynajmnniej 3 znaki
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="street" class="col-md-4 my-auto text-md-right">Ulica</label>
-            <div class="col-md-6 my-auto">
-              <input type="text" [formControlName]="'street'" id="street"
-                     class="form-control">
-            </div>
-          </div>
-          <div *ngIf="street!.invalid && street!.touched" class="alert alert-danger">
-            <div *ngIf="street!.errors?.required">
-              Pole nie może być puste
-            </div>
-            <div *ngIf="street!.errors?.maxlength">
-              Nazwa ulicy nie może być dłuższa niż 80 znaków
-            </div>
-            <div *ngIf="street!.errors?.minlength">
-              Nazwa ulicy musi mieć przynajmnniej 3 znaki
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="streetNumber" class="col-md-4 my-auto text-md-right">Numer
-              mieszkania</label>
-            <div class="col-md-6 my-auto">
-              <input type="text" [formControlName]="'streetNumber'" id="streetNumber"
-                     class="form-control">
-            </div>
-          </div>
-          <div *ngIf="streetNumber!.invalid && streetNumber!.touched" class="alert alert-danger">
-            <div *ngIf="streetNumber!.errors?.required">
-              Pole nie może być puste
-            </div>
-            <div *ngIf="streetNumber!.errors?.maxlength">
-              Numer mieszkania nie może być dłuższy niż 60 znaków
-            </div>
-            <div *ngIf="streetNumber!.errors?.minlength">
-              Numer mieszkania musi mieć przynajmnniej 1 znak
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="resortAmenities" class="col-md-4 my-auto text-md-right">Udogodnienia</label>
-
-            <div class="col-md-6 my-auto">
-              <ng-multiselect-dropdown [formControlName]="'resortAmenities'" id="resortAmenities"
-                                       [(ngModel)]="selectedAmenities"
-                                       [placeholder]="'Wybierz udogodnienia ośrodka'"
-                                       [settings]="dropdownSettings" [data]="amenities">
-              </ng-multiselect-dropdown>
-            </div>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [formControlName]="'smokingPermitted'"
-                   id="smokingPermitted">
-            <label class="form-check-label" for="smokingPermitted">
-              Palenie w pokoju jest dozwolone
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [formControlName]="'animalsPermitted'"
-                   id="animalsPermitted">
-            <label class="form-check-label" for="animalsPermitted">
-              Posiadanie zwierząt jest dozwolone
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [formControlName]="'partyPermitted'"
-                   id="partyPermitted">
-            <label class="form-check-label" for="partyPermitted">
-              Organizacja imprez jest dozwolona
-            </label>
-          </div>
-
-          <div class="form-group row">
-            <label for="hotelDayStart" class="col-md-4 my-auto text-md-right">
-              Zameldowanie od</label>
-            <div class="col-md-6 my-auto">
-              <select [formControlName]="'hotelDayStart'" id="hotelDayStart">
-                <option *ngFor="let hour of checkInHours"
-                        [selected]="hour === defaultCheckInHour">{{hour}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="hotelDayEnd" class="col-md-4 my-auto text-md-right">Wymeldowanie do</label>
-            <div class="col-md-6 my-auto">
-              <select [formControlName]="'hotelDayEnd'" id="hotelDayEnd">
-                <option *ngFor="let hour of checkOutHours"
-                        [selected]="hour === defaultCheckOutHour">{{hour}}</option>
-              </select>
-            </div>
-          </div>
-
-          Czy jest dostępny parking?
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [formControlName]="'isParkingAvailable'"
-                   id="freeParking" value="free">
-            <label class="form-check-label" for="freeParking">
-              Tak, bezpłatny
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [formControlName]="'isParkingAvailable'"
-                   id="paidParking" value="paid">
-            <label class="form-check-label" for="paidParking">
-              Tak, płatny
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [formControlName]="'isParkingAvailable'"
-                   id="unavailableParking" value="unavailable">
-            <label class="form-check-label" for="unavailableParking">
-              Parking nie jest dostępny
-            </label>
-          </div>
-
-          <div *ngIf="isParkingAvailable!.value === 'paid'" class="d-flex justify-content-center">
 
             <div class="form-group row">
-              <label for="parkingFee" class="col-md-4 my-auto text-md-right">Koszt za dobę
+              <label for="country" class="col-md-4 my-auto text-md-right">Państwo</label>
+              <div class="col-md-6 my-auto">
+                <select [formControlName]="'country'" id="country"
+                        onmousedown="if(this.options.length>5){this.size=5;}"
+                        onchange='this.size=0;' onblur="this.size=0;">
+                  <option class="text-center" *ngFor="let country of countries"
+                          [selected]="country == defaultSelectedCountry">{{country}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="city" class="col-md-4 my-auto text-md-right">Miasto</label>
+              <div class="col-md-6 my-auto">
+                <input type="text" [formControlName]="'city'" id="city"
+                       class="form-control">
+              </div>
+            </div>
+            <div *ngIf="city!.invalid && city!.touched" class="alert alert-danger">
+              <div *ngIf="city!.errors?.required">
+                Pole nie może być puste
+              </div>
+              <div *ngIf="city!.errors?.maxlength">
+                Nazwa miasta nie może być dłuższa niż 80 znaków
+              </div>
+              <div *ngIf="city!.errors?.minlength">
+                Nazwa miasta musi mieć przynajmnniej 3 znaki
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="street" class="col-md-4 my-auto text-md-right">Ulica</label>
+              <div class="col-md-6 my-auto">
+                <input type="text" [formControlName]="'street'" id="street"
+                       class="form-control">
+              </div>
+            </div>
+            <div *ngIf="street!.invalid && street!.touched" class="alert alert-danger">
+              <div *ngIf="street!.errors?.required">
+                Pole nie może być puste
+              </div>
+              <div *ngIf="street!.errors?.maxlength">
+                Nazwa ulicy nie może być dłuższa niż 80 znaków
+              </div>
+              <div *ngIf="street!.errors?.minlength">
+                Nazwa ulicy musi mieć przynajmnniej 3 znaki
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="streetNumber" class="col-md-4 my-auto text-md-right">Numer
+                mieszkania</label>
+              <div class="col-md-6 my-auto">
+                <input type="text" [formControlName]="'streetNumber'" id="streetNumber"
+                       class="form-control">
+              </div>
+            </div>
+            <div *ngIf="streetNumber!.invalid && streetNumber!.touched" class="alert alert-danger">
+              <div *ngIf="streetNumber!.errors?.required">
+                Pole nie może być puste
+              </div>
+              <div *ngIf="streetNumber!.errors?.maxlength">
+                Numer mieszkania nie może być dłuższy niż 60 znaków
+              </div>
+              <div *ngIf="streetNumber!.errors?.minlength">
+                Numer mieszkania musi mieć przynajmnniej 1 znak
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 offset-6">
+                <button type="button" (click)="continue()"
+                        class="btn btn-outline-secondary font-weight-bold w-100 my-auto">
+                  <span class="mr-2 my-auto">Dalej</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-arrow-right-circle" viewBox="0 0 16 16">-->
+                    <path fill-rule="evenodd"
+                          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="step === 2">
+            <div class="form-group row">
+              <label for="resortAmenities"
+                     class="col-md-5 my-auto text-md-right">Udogodnienia</label>
+
+              <div class="col-md-5 my-auto">
+                <ng-multiselect-dropdown [formControlName]="'resortAmenities'" id="resortAmenities"
+                                         [(ngModel)]="selectedAmenities"
+                                         [placeholder]="'Wybierz udogodnienia'"
+                                         [settings]="dropdownSettings" [data]="amenities">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="form-check col-12">
+                <input class="form-check-input" type="checkbox"
+                       [formControlName]="'smokingPermitted'"
+                       id="smokingPermitted">
+                <label class="form-check-label" for="smokingPermitted">
+                  Palenie w pokoju jest dozwolone
+                  <img src="assets/icons/cigarette.png" class="icon"
+                       alt="Icon of cigarette">
+                </label>
+              </div>
+            </div>
+
+            <div class="row my-2">
+              <div class="form-check col-12">
+                <input class="form-check-input" type="checkbox"
+                       [formControlName]="'animalsPermitted'"
+                       id="animalsPermitted">
+                <label class="form-check-label" for="animalsPermitted">
+                  Posiadanie zwierząt jest dozwolone
+                  <img src="assets/icons/dog.png" class="icon"
+                       alt="Icon of dog">
+                </label>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="form-check col-12">
+                <input class="form-check-input" type="checkbox" [formControlName]="'partyPermitted'"
+                       id="partyPermitted">
+                <label class="form-check-label" for="partyPermitted">
+                  Organizacja imprez jest dozwolona
+                  <img src="assets/icons/party.png" class="icon"
+                       alt="Icon of party">
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row mt-3">
+              <label for="hotelDayStart" class="col-md-6 my-auto text-md-right">
+                Zameldowanie od</label>
+              <div class="col-md-3 my-auto">
+                <select [formControlName]="'hotelDayStart'" id="hotelDayStart">
+                  <option class="text-center" *ngFor="let hour of checkInHours"
+                          [selected]="hour === defaultCheckInHour">{{hour}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="hotelDayEnd" class="col-md-6 my-auto text-md-right">Wymeldowanie
+                do</label>
+              <div class="col-md-3 my-auto">
+                <select [formControlName]="'hotelDayEnd'" id="hotelDayEnd">
+                  <option class="text-center" *ngFor="let hour of checkOutHours"
+                          [selected]="hour === defaultCheckOutHour">{{hour}}</option>
+                </select>
+              </div>
+            </div>
+
+            <img src="assets/icons/parking.png" class="icon"
+                 alt="Icon of parking">
+            Czy jest dostępny parking?
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" [formControlName]="'isParkingAvailable'"
+                     id="freeParking" value="free">
+              <label class="form-check-label" for="freeParking">
+                Tak, bezpłatny
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input pt-4" type="radio"
+                     [formControlName]="'isParkingAvailable'"
+                     id="paidParking" value="paid">
+              <label class="form-check-label" for="paidParking">
+                Tak, płatny
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" [formControlName]="'isParkingAvailable'"
+                     id="unavailableParking" value="unavailable">
+              <label class="form-check-label" for="unavailableParking">
+                Parking nie jest dostępny
+              </label>
+            </div>
+
+            <div class="form-group row mt-2" *ngIf="isParkingAvailable!.value === 'paid'">
+              <label for="parkingFee" class="col-md-4 offset-2 my-auto text-md-right">Koszt za dobę
                 parkingu</label>
-              <div class="col-md-4 my-auto">
+              <div class="col-md-3 my-auto">
                 <input type="number" step="1" min="1" [formControlName]="'parkingFee'"
                        id="parkingFee"
                        class="form-control">
               </div>
-              <div class="col-md-2 my-auto">
-                PLN
+              <div class="col-1 my-auto text-left">
+                zł
               </div>
 
-            </div>
-            <div *ngIf="parkingFee!.invalid && parkingFee!.touched" class="alert alert-danger">
-              <div *ngIf="parkingFee!.errors?.required">
-                Pole nie może być puste
+              <div *ngIf="parkingFee!.invalid && parkingFee!.touched" class="alert alert-danger">
+                <div *ngIf="parkingFee!.errors?.required">
+                  Pole nie może być puste
+                </div>
+                <div *ngIf="parkingFee!.errors?.pattern">
+                  Niepoprawny format opłaty
+                </div>
               </div>
-              <div *ngIf="parkingFee!.errors?.pattern">
-                Niepoprawny format opłaty
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8 offset-md-2">
-            <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
-              Potwierdź
-            </button>
-            <div class="alert alert-success mt-3" *ngIf="isSuccess">
-              Dodawanie ośrodka sie powiodło!
             </div>
 
-            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
-              {{errorMessage}}
+            <div class="row mt-3">
+              <div class="col-md-5 offset-1">
+                <button type="button" (click)="backward()"
+                        class="btn btn-outline-secondary font-weight-bold w-100">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                  </svg>
+                  <span class="ml-2 my-auto">Powrót</span>
+                </button>
+              </div>
+              <div class="col-md-5">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold w-100">
+
+                  <span class="mr-2 my-auto">Dodaj hotel</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path
+                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path
+                      d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="col-md-10 offset-1 alert alert-success mt-3" *ngIf="isSuccess">
+                Dodano nowy hotel!
+              </div>
+              <div class="col-md-10 offset-1 alert alert-danger mt-3"
+                   *ngIf="errorMessage.length > 0">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
 
