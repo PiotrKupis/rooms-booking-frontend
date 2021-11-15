@@ -84,4 +84,12 @@ select {
   cursor: pointer
 }
 
+.change-number-btn {
+  height: 36px;
+  width: 36px;
+  padding: 10px;
+  line-height: 10px;
+  box-sizing: border-box;
+}
+
 

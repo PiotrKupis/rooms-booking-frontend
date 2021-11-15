@@ -18,6 +18,7 @@ export class AddRoomComponent implements OnInit {
   addRoomForm!: FormGroup;
   errorMessage: string = "";
   isSuccess: boolean = false;
+  step: number = 1;
 
   amenities: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
@@ -214,6 +215,14 @@ export class AddRoomComponent implements OnInit {
 
   convertStringToRoomAmenity(amenity: string): string {
     return this.roomService.convertStringToRoomAmenity(amenity);
+  }
+
+  continue() {
+    this.step = this.step + 1;
+  }
+
+  backward() {
+    this.step = this.step - 1;
   }
 
   addSingleBed() {

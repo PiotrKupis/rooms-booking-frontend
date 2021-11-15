@@ -1,8 +1,7 @@
-<div class="d-flex justify-content-center">
-  <div class="col-md-8">
+<div class="container-fluid d-flex justify-content-center mt-2">
+  <div class="col-md-7">
 
     <div class="card text-center text-dark bg-light border-dark">
-
       <div class="body-header h4">
         Dodawnie nowego pokoju
       </div>
@@ -10,139 +9,214 @@
       <div class="card-body">
         <form [formGroup]="addRoomForm" (ngSubmit)="addRoom()">
 
-          <div class="form-group row">
-            <label for="resortName" class="col-md-4 my-auto text-md-right">Wybierz hotel</label>
-            <div class="col-md-6 my-auto">
-              <select [formControlName]="'resortName'" id="resortName">
-                <option *ngFor="let resort of availableResorts">{{resort}}</option>
-              </select>
+          <div *ngIf="step === 1">
+            <div class="form-group row">
+              <label for="resortName" class="col-md-4 offset-1 my-auto text-md-right">Wybierz
+                hotel</label>
+              <div class="col-md-5 my-auto">
+                <select [formControlName]="'resortName'" id="resortName">
+                  <option class="text-center"
+                          *ngFor="let resort of availableResorts">{{resort}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="roomNumber" class="col-md-4 offset-2 my-auto text-md-right">
+                Numer pokoju</label>
+              <div class="col-md-3 my-auto">
+                <input type="number" step="1" min="1" [formControlName]="'roomNumber'"
+                       id="roomNumber"
+                       class="form-control">
+              </div>
+            </div>
+            <div *ngIf="roomNumber!.invalid && roomNumber!.touched" class="alert alert-danger">
+              <div
+                *ngIf="roomNumber!.errors?.required || roomNumber!.errors?.maxlength || roomNumber!.errors?.minlength || roomNumber!.errors?.pattern">
+                Podano nieprawidłowy numer pokoju
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="price" class="col-md-4 offset-2 my-auto text-md-right">Cena za
+                dobę</label>
+              <div class="col-md-3 my-auto">
+                <input type="number" step="1" min="1" value="100" [formControlName]="'price'"
+                       id="price" class="form-control">
+              </div>
+              <div class="col-md-2 text-left my-auto">
+                zł
+              </div>
+            </div>
+            <div *ngIf="price!.invalid && price!.touched" class="alert alert-danger">
+              <div *ngIf="price!.errors?.required">
+                Pole nie może być puste
+              </div>
+              <div
+                *ngIf="price!.errors?.maxlength || price!.errors?.min || price!.errors?.pattern">
+                Podano nieprawidłową cenę
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="roomAmenities" class="col-md-5 my-auto text-md-right">Udogodnienia</label>
+
+              <div class="col-md-5 my-auto">
+                <ng-multiselect-dropdown [formControlName]="'roomAmenities'" id="roomAmenities"
+                                         [(ngModel)]="selectedAmenities"
+                                         [placeholder]="'Udogodnienia pokoju'"
+                                         [settings]="dropdownSettings" [data]="amenities">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+
+            <div class="col-md-12 my-4 h6">
+              Dostępne łóżka:
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6 my-auto text-md-right">
+                <img src="assets/icons/single-bed.png" class="icon"
+                     alt="Icon of single bed">
+                Łóźko pojedyńcze
+              </div>
+
+              <div class="col-md-6 my-auto ml-n5 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-danger change-number-btn my-auto"
+                        (click)="subtractSingleBed()">-
+                </button>
+                <div class="my-auto h5 mx-3">
+                  {{singleBedQuantity}}
+                </div>
+                <button type="button" class="btn btn-outline-success change-number-btn my-auto"
+                        (click)="addSingleBed()">+
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6 my-auto text-md-right">
+                <img src="assets/icons/double-bed.png" class="icon"
+                     alt="Icon of double bed">
+                Łóźko podwójne
+              </div>
+
+              <div class="col-md-6 my-auto ml-n5 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-danger change-number-btn my-auto"
+                        (click)="subtractDoubleBed()">-
+                </button>
+                <div class="my-auto h5 mx-3">
+                  {{doubleBedQuantity}}
+                </div>
+                <button type="button" class="btn btn-outline-success change-number-btn my-auto"
+                        (click)="addDoubleBed()">+
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6 my-auto text-md-right">
+                <img src="assets/icons/king-size-bed.png" class="icon"
+                     alt="Icon of king size type bed">
+                Łóźko typu king-size
+              </div>
+
+              <div class="col-md-6 my-auto ml-n5 d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-danger change-number-btn my-auto"
+                        (click)="subtractKingSizeBed()">-
+                </button>
+                <div class="my-auto h5 mx-3">
+                  {{kingSizeBedQuantity}}
+                </div>
+                <button type="button" class="btn btn-outline-success change-number-btn my-auto"
+                        (click)="addKingSizeBed()">+
+                </button>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-5 offset-6">
+                <button type="button" (click)="continue()"
+                        class="btn btn-outline-secondary  font-weight-bold w-100 my-auto">
+                  <span class="mr-2 my-auto">Dalej</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-arrow-right-circle" viewBox="0 0 16 16">-->
+                    <path fill-rule="evenodd"
+                          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="form-group row">
-            <label for="roomNumber" class="col-md-4 my-auto text-md-right">Numer pokoju</label>
-            <div class="col-md-6 my-auto">
-              <input type="number" step="1" min="1" [formControlName]="'roomNumber'" id="roomNumber"
-                     class="form-control">
-            </div>
-          </div>
-          <div *ngIf="roomNumber!.invalid && roomNumber!.touched" class="alert alert-danger">
-            <div
-              *ngIf="roomNumber!.errors?.required || roomNumber!.errors?.maxlength || roomNumber!.errors?.minlength || roomNumber!.errors?.pattern">
-              Podano nieprawidłowy numer pokoju
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="price" class="col-md-4 my-auto text-md-right">Cena za dobę</label>
-            <div class="col-md-4 my-auto">
-              <input type="number" step="1" min="1" value="100" [formControlName]="'price'"
-                     id="price" class="form-control">
-            </div>
-            <div class="col-md-2 my-auto">
-              PLN
-            </div>
-          </div>
-          <div *ngIf="price!.invalid && price!.touched" class="alert alert-danger">
-            <div *ngIf="price!.errors?.required">
-              Pole nie może być puste
-            </div>
-            <div
-              *ngIf="price!.errors?.maxlength || price!.errors?.min || price!.errors?.pattern">
-              Podano nieprawidłową cenę
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="roomAmenities" class="col-md-4 my-auto text-md-right">Udogodnienia
-              pokoju</label>
-
-            <div class="col-md-6 my-auto">
-              <ng-multiselect-dropdown [formControlName]="'roomAmenities'" id="roomAmenities"
-                                       [(ngModel)]="selectedAmenities"
-                                       [placeholder]="'Wybierz udogodnienia pokoju'"
-                                       [settings]="dropdownSettings" [data]="amenities">
-              </ng-multiselect-dropdown>
-            </div>
-          </div>
-
-          <div class="col-md-12 my-4">
-            <h6>Dostępne łóżka:</h6>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-6 my-auto text-md-right">
-              Łóźko pojedyńcze
-            </div>
-            <div class="col-md-6 my-auto">
-              <button type="button" (click)="addSingleBed()">+</button>
-              {{singleBedQuantity}}
-              <button type="button" (click)="subtractSingleBed()">-</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-6 my-auto text-md-right">
-              Łóźko podwójne
-            </div>
-            <div class="col-md-6 my-auto">
-              <button type="button" (click)="addDoubleBed()">+</button>
-              {{doubleBedQuantity}}
-              <button type="button" (click)="subtractDoubleBed()">-</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-6 my-auto text-md-right">
-              Łóźko typu king-size
-            </div>
-            <div class="col-md-6 my-auto">
-              <button type="button" (click)="addKingSizeBed()">+</button>
-              {{kingSizeBedQuantity}}
-              <button type="button" (click)="subtractKingSizeBed()">-</button>
-            </div>
-          </div>
-
-          <div class="col-md-12 my-4">
-            <h6>Ilu gości może się zatrzymać w pokoju?</h6>
-          </div>
-
-          <div class="col-md-12 my-3">
-
-            <button type="button" (click)="addMaxResidentsNumber()">+</button>
-            {{maxResidentsNumber}}
-            <button type="button" (click)="subtractMaxResidentsNumber()">-</button>
-          </div>
-
-          <div class="col-md-12 my-4">
-            <h6>Zdjęcia pokoju</h6>
-          </div>
-
-          <div class="form-group row-center">
-            <input type="file" #selectedFile (change)="updateSelectedImage($event)"
-                   value="Dodaj zdjęcie">
-            <input type="button" class="btn btn-primary active font-weight-bold"
-                   (click)="uploadImage(selectedFile)"
-                   value="Dodaj zdjęcie">
-          </div>
-
-          <div class="row mx-3" *ngIf="imagesToDisplay.length > 0">
-            <div class="col-md-3 img-container mb-3" *ngFor="let image of imagesToDisplay">
-              <img [src]="image" alt="Room image" width="200" height="200">
-            </div>
-          </div>
-
-
-          <div class="col-md-8 offset-md-2">
-            <button type="submit" class="btn btn-primary btn-lg btn-block active font-weight-bold">
-              Potwierdź
-            </button>
-            <div class="alert alert-success mt-3" *ngIf="isSuccess">
-              Dodawanie pokoju sie powiodło!
+          <div *ngIf="step === 2">
+            <div class="col-md-12 mb-3 h6">
+              Ile osób może się zatrzymać w pokoju?
             </div>
 
-            <div class="alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
-              {{errorMessage}}
+            <div class="col-md-12 d-flex justify-content-center my-2">
+              <button type="button" class="btn btn-outline-danger change-number-btn my-auto"
+                      (click)="subtractMaxResidentsNumber()">-
+              </button>
+              <div class="my-auto h5 mx-3">
+                {{maxResidentsNumber}}
+              </div>
+              <button type="button" class="btn btn-outline-success change-number-btn my-auto"
+                      (click)="addMaxResidentsNumber()">+
+              </button>
+            </div>
+
+            <div class="col-md-12 my-4 h6">
+              Zdjęcia pokoju
+            </div>
+
+            <div class="form-group row-center">
+              <input type="file" #selectedFile (change)="updateSelectedImage($event)">
+              <input type="button" class="btn btn-outline-secondary font-weight-bold"
+                     (click)="uploadImage(selectedFile)"
+                     value="Dodaj zdjęcie">
+            </div>
+
+            <div class="row mx-2" *ngIf="imagesToDisplay.length > 0">
+              <div class="col-md-4 img-container mb-3" *ngFor="let image of imagesToDisplay">
+                <img [src]="image" alt="Room image">
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-5 offset-1">
+                <button type="button" (click)="backward()"
+                        class="btn btn-outline-secondary font-weight-bold w-100">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                  </svg>
+                  <span class="ml-2 my-auto">Powrót</span>
+                </button>
+              </div>
+              <div class="col-md-5">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold w-100">
+
+                  <span class="mr-2 my-auto">Dodaj pokój</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor"
+                       class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path
+                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path
+                      d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="col-md-10 offset-1 alert alert-success mt-3" *ngIf="isSuccess">
+                Dodano nowy pokój!
+              </div>
+              <div class="col-md-10 offset-1 alert alert-danger mt-3"
+                   *ngIf="errorMessage.length > 0">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
 
