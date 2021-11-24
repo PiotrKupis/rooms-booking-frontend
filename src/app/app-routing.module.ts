@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'add-resort', component: AddResortComponent},
   {path: 'add-room', component: AddRoomComponent},
-  {path: "rooms", component: RoomsComponent},
+  {path: "rooms/:location/:residentsNumber/:startDate/:endDate", component: RoomsComponent},
   {path: "room/:resortName/:roomNumber", component: RoomComponent}
 ];
 

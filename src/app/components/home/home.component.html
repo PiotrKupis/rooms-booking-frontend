@@ -1,10 +1,91 @@
-<br/><br/>
+<div class="container d-flex justify-content-center mt-lg-3">
+  <div class="col-md-9">
 
-<div class="row justify-content-center ">
+    <div class="card text-center text-dark bg-light border-dark">
 
-  <div class="card text-center text-dark bg-light border-dark px-5 py-4 ">
-    <p>home test</p>
-    <button [routerLink]="'/rooms'">Pokoje</button>
+      <div class="card-body">
+        <form [formGroup]="searchForm" (submit)="searchRooms()">
+
+          <div class="row text-center">
+            <div class="col-md-6 offset-1">
+
+              <div class="col-12 font-weight-bold mb-2">
+                Lokalizacja
+              </div>
+
+              <div class="col-12 mb-2 mt-n1">
+                <input type="text" class="form-control text-center" [formControlName]="'location'"
+                       placeholder="Miasto lub państwo">
+              </div>
+
+            </div>
+            <div class="col-md-4">
+              <div class="col-12 font-weight-bold mb-2">
+                Ilość gości
+              </div>
+
+              <div class="col-12 d-flex justify-content-center mb-2 mt-2">
+                <button type="button" class="btn btn-outline-danger change-number-btn my-auto"
+                        (click)="decreaseResidentNumber()">
+                  -
+                </button>
+                <div class="my-auto h5 mx-3">
+                  {{residentsNumber}}
+                </div>
+                <button type="button" class="btn btn-outline-success change-number-btn my-auto"
+                        (click)="increaseResidentsNumber()">
+                  +
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row col-12 d-flex justify-content-center">
+            <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                            [dayTemplate]="t" outsideDays="hidden">
+            </ngb-datepicker>
+
+            <ng-template #t let-date let-focused="focused">
+          <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+            </ng-template>
+          </div>
+
+          <div class="col-md-10 offset-1 alert alert-danger mt-3" *ngIf="errorMessage.length > 0">
+            {{errorMessage}}
+          </div>
+
+          <div class="col-md-10 offset-1 alert alert-danger mt-3"
+               *ngIf="location!.invalid && location!.touched">
+            <div *ngIf="location!.errors?.required">
+              Pole lokalizacji nie może być puste
+            </div>
+            <div *ngIf="location!.errors?.minlength">
+              Lokalizacja nie może być krótsza niż 5 znaków
+            </div>
+            <div *ngIf="location!.errors?.maxlength">
+              Lokalizacja nie może być dłuższa niż 80 znaków
+            </div>
+          </div>
+
+
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-outline-secondary font-weight-bold w-50">
+                Szukaj
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
   </div>
 </div>
-<br/><br/>
+
