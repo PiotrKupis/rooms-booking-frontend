@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "rooms-booking-frontend": {
+      "i18n": {
+        "sourceLocale": {
+          "code": "pl",
+          "baseHref": ""
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
