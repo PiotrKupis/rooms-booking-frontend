@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class SearchService {
 
-  path = environment.apiEndpoint + "room/search";
+  path = environment.apiEndpoint + "search";
 
   constructor(private http: HttpClient) {
   }
@@ -20,7 +20,7 @@ export class SearchService {
   }
 
   searchRooms(searchPayload: SearchPayload, pageNumber: number, roomsPerPage: number, imageQuantity: number): Observable<Array<DetailedRoomPayload>> {
-    let params = `?page-number=${pageNumber}&rooms-per-page=${roomsPerPage}&image-quantity=${imageQuantity}`;
+    let params = `?page-number=${pageNumber}&rooms-per-page=${roomsPerPage}&photos-per-room=${imageQuantity}`;
     return this.http.post<Array<DetailedRoomPayload>>(this.path + params, searchPayload);
   }
 }

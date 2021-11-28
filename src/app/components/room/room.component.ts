@@ -36,7 +36,7 @@ export class RoomComponent implements OnInit {
     doubleBedQuantity: 0,
     kingSizeBedQuantity: 0,
     maxResidentsNumber: 0,
-    images: []
+    photos: []
   } as DetailedRoomPayload;
 
   resort = {
@@ -79,8 +79,8 @@ export class RoomComponent implements OnInit {
     this.roomService.getRoom(this.resortName, this.roomNumber).subscribe(
       room => {
         this.room = room;
-        for (let i = 0; i < this.room.images.length; ++i) {
-          this.room.images[i].bytes = 'data:image/jpeg;base64,' + this.room.images[i].bytes;
+        for (let i = 0; i < this.room.photos.length; ++i) {
+          this.room.photos[i].bytes = 'data:image/jpeg;base64,' + this.room.photos[i].bytes;
         }
       },
       () => {

@@ -1,4 +1,4 @@
-import {ImagePayload} from "./imagePayload";
+import {PhotoPayload} from "./photoPayload";
 
 export interface DetailedRoomPayload {
   resortName: string;
@@ -14,5 +14,5 @@ export interface DetailedRoomPayload {
   doubleBedQuantity: number;
   kingSizeBedQuantity: number;
   maxResidentsNumber: number;
-  images: Array<ImagePayload>
+  photos: Array<PhotoPayload>
 }

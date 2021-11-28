@@ -4,7 +4,6 @@ import {AddRoomRequest} from "../models/addRoomRequest";
 import {Observable} from "rxjs";
 import {RoomPayload} from "../models/roomPayload";
 import {environment} from "../../environments/environment";
-import {ImagePayload} from "../models/imagePayload";
 import {DetailedRoomPayload} from "../models/detailedRoomPayload";
 
 @Injectable({
@@ -33,14 +32,6 @@ export class RoomService {
 
   addRoom(addRoomRequest: AddRoomRequest): Observable<RoomPayload> {
     return this.http.post<RoomPayload>(this.path, addRoomRequest);
-  }
-
-  addRoomImage(resortName: string, roomNumber: number, image: FormData): Observable<string> {
-    return this.http.post<string>(this.path + "/" + resortName + "/" + roomNumber + "/photo", image);
-  }
-
-  getRoomImages(resortName: string, roomNumber: number): Observable<Array<ImagePayload>> {
-    return this.http.get<Array<ImagePayload>>(this.path + "/" + resortName + "/" + roomNumber + "/photo");
   }
 
   getAllRooms(imageQuantity: number): Observable<Array<DetailedRoomPayload>> {

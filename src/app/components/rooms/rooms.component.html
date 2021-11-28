@@ -10,8 +10,8 @@
 
         <div class="card-body">
           <div class="row mt-n3">
-            <div class="col-md-4 img-container" *ngFor="let image of room.images">
-              <img [src]="image.bytes" alt="Room image">
+            <div class="col-md-4 img-container mb-2" *ngFor="let photo of room.photos">
+              <img [src]="photo.bytes" alt="Room photo">
             </div>
           </div>
 

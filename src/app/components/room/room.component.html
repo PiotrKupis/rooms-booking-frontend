@@ -9,12 +9,12 @@
 
       <div class="card-body">
         <div class="row mx-2 mt-n3">
-          <div class="col-md-3 img-container" *ngFor="let image of room.images.slice(0, 3)">
-            <img [src]="image.bytes" alt="Room image">
+          <div class="col-md-3 img-container" *ngFor="let photo of room.photos.slice(0, 3)">
+            <img [src]="photo.bytes" alt="Room image">
           </div>
           <div class="col-md-3 d-flex justify-content-center">
             <button type="button" class="btn btn-outline-secondary btn-lg w-100">
-              <b>+{{room.images.length - 3}} zdjęcia</b>
+              <b>+{{room.photos.length - 3}} zdjęcia</b>
             </button>
           </div>
         </div>

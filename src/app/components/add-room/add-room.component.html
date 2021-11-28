@@ -171,15 +171,15 @@
             </div>
 
             <div class="form-group row-center">
-              <input type="file" #selectedFile (change)="updateSelectedImage($event)">
+              <input type="file" #selectedFile (change)="updateSelectedPhoto($event)">
               <input type="button" class="btn btn-outline-secondary font-weight-bold"
-                     (click)="uploadImage(selectedFile)"
+                     (click)="uploadPhoto(selectedFile)"
                      value="Dodaj zdjęcie">
             </div>
 
-            <div class="row mx-2" *ngIf="imagesToDisplay.length > 0">
-              <div class="col-md-4 img-container mb-3" *ngFor="let image of imagesToDisplay">
-                <img [src]="image" alt="Room image">
+            <div class="row mx-2" *ngIf="photosToDisplay.length > 0">
+              <div class="col-md-4 img-container mb-3" *ngFor="let photo of photosToDisplay">
+                <img [src]="photo" alt="Room photo">
               </div>
             </div>
 

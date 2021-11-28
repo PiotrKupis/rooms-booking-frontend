@@ -17,7 +17,7 @@ export class RoomsComponent implements OnInit {
   roomsPerPage: number = 2;
   numberOfPages: number = 0;
   currentPage: number = 1;
-  roomImageQuantity = 3;
+  photosPerRoom = 3;
   searchPayload!: SearchPayload;
 
   constructor(private roomService: RoomService,
@@ -62,12 +62,12 @@ export class RoomsComponent implements OnInit {
   }
 
   private loadRooms() {
-    this.searchService.searchRooms(this.searchPayload, this.currentPage, this.roomsPerPage, this.roomImageQuantity).subscribe(
+    this.searchService.searchRooms(this.searchPayload, this.currentPage, this.roomsPerPage, this.photosPerRoom).subscribe(
       rooms => {
         this.rooms = rooms;
         for (let i = 0; i < this.rooms.length; ++i) {
-          for (let j = 0; j < this.rooms[i].images.length; ++j) {
-            this.rooms[i].images[j].bytes = 'data:image/jpeg;base64,' + this.rooms[i].images[j].bytes;
+          for (let j = 0; j < this.rooms[i].photos.length; ++j) {
+            this.rooms[i].photos[j].bytes = 'data:image/jpeg;base64,' + this.rooms[i].photos[j].bytes;
           }
         }
 

@@ -7,6 +7,7 @@ import {AddRoomRequest} from "../../models/addRoomRequest";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../environments/environment";
 import {RoomService} from "../../services/room.service";
+import {PhotoService} from "../../services/photo.service";
 
 @Component({
   selector: 'app-add-room',
@@ -30,12 +31,13 @@ export class AddRoomComponent implements OnInit {
   kingSizeBedQuantity = 0;
   maxResidentsNumber = 0;
 
-  isSelectedImageCorrect = false;
-  selectedImage!: File;
-  imagesToSend: File[] = [];
-  imagesToDisplay: any[] = [];
+  isSelectedPhotoCorrect = false;
+  selectedPhoto!: File;
+  photosToSend: File[] = [];
+  photosToDisplay: any[] = [];
 
   constructor(private resortService: ResortService,
+              private photoService: PhotoService,
               private authService: AuthService,
               private toastr: ToastrService,
               private roomService: RoomService) {
@@ -92,8 +94,8 @@ export class AddRoomComponent implements OnInit {
     })
   }
 
-  public updateSelectedImage(event: any) {
-    console.log("Changed selected image");
+  public updateSelectedPhoto(event: any) {
+    console.log("Changed selected photo");
     const files = event.target.files;
     if (files.length === 0)
       return;
@@ -104,23 +106,23 @@ export class AddRoomComponent implements OnInit {
       return;
     }
 
-    this.isSelectedImageCorrect = true;
-    this.selectedImage = files[0];
+    this.isSelectedPhotoCorrect = true;
+    this.selectedPhoto = files[0];
   }
 
-  uploadImage(element: any) {
-    if (this.isSelectedImageCorrect) {
-      console.log("Added a new image to list of images");
+  uploadPhoto(element: any) {
+    if (this.isSelectedPhotoCorrect) {
+      console.log("Added a new photo to list of photos");
 
-      this.imagesToSend.push(this.selectedImage);
+      this.photosToSend.push(this.selectedPhoto);
 
       let reader = new FileReader();
-      reader.readAsDataURL(this.imagesToSend[this.imagesToSend.length - 1]);
+      reader.readAsDataURL(this.photosToSend[this.photosToSend.length - 1]);
       reader.onload = (_event) => {
-        this.imagesToDisplay[this.imagesToSend.length - 1] = reader.result;
+        this.photosToDisplay[this.photosToSend.length - 1] = reader.result;
       }
 
-      this.isSelectedImageCorrect = false;
+      this.isSelectedPhotoCorrect = false;
       element.value = "";
     }
   }
@@ -149,7 +151,7 @@ export class AddRoomComponent implements OnInit {
       return;
     }
 
-    if (this.imagesToSend.length < 4) {
+    if (this.photosToSend.length < 4) {
       this.errorMessage = "Dodaj przynajmniej 4 zdjęcia pokoju, aby móc go dodać";
       return;
     }
@@ -177,14 +179,14 @@ export class AddRoomComponent implements OnInit {
     this.roomService.addRoom(addRoomRequest)
     .subscribe(
       data => {
-        // adding images of room
-        for (let i = 0; i < this.imagesToSend.length; i++) {
-          const uploadImageData = new FormData();
-          uploadImageData.append('image', this.imagesToSend[i], this.imagesToSend[i].name);
+        // adding photos of room
+        for (let i = 0; i < this.photosToSend.length; i++) {
+          const uploadPhotoData = new FormData();
+          uploadPhotoData.append('photo', this.photosToSend[i], this.photosToSend[i].name);
 
-          this.roomService.addRoomImage(data.resortName, data.roomNumber, uploadImageData)
+          this.photoService.addRoomPhoto(data.resortName, data.roomNumber, uploadPhotoData)
           .subscribe(() => {
-              console.log("Successfully added room image");
+              console.log("Successfully added room photo");
             },
             error => {
               console.error(error);
@@ -200,8 +202,8 @@ export class AddRoomComponent implements OnInit {
         this.doubleBedQuantity = 0;
         this.kingSizeBedQuantity = 0;
         this.maxResidentsNumber = 0;
-        this.imagesToSend = [];
-        this.imagesToDisplay = [];
+        this.photosToSend = [];
+        this.photosToDisplay = [];
       },
       error => {
         if (error.status === 409) {
