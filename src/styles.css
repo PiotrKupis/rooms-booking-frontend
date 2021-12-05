@@ -67,9 +67,8 @@ select {
 }
 
 .img-container img {
-  max-height: 200px;
+  height: 180px;
   width: 100%;
-  height: auto;
   margin-left: auto;
   margin-right: auto
 }

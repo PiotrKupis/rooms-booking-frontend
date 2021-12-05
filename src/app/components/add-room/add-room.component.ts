@@ -8,6 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {environment} from "../../../environments/environment";
 import {RoomService} from "../../services/room.service";
 import {PhotoService} from "../../services/photo.service";
+import {AddPhotoRequest} from "../../models/addPhotoRequest";
 
 @Component({
   selector: 'app-add-room',
@@ -33,8 +34,7 @@ export class AddRoomComponent implements OnInit {
 
   isSelectedPhotoCorrect = false;
   selectedPhoto!: File;
-  photosToSend: File[] = [];
-  photosToDisplay: any[] = [];
+  photos: string[] = [];
 
   constructor(private resortService: ResortService,
               private photoService: PhotoService,
@@ -113,13 +113,10 @@ export class AddRoomComponent implements OnInit {
   uploadPhoto(element: any) {
     if (this.isSelectedPhotoCorrect) {
       console.log("Added a new photo to list of photos");
-
-      this.photosToSend.push(this.selectedPhoto);
-
       let reader = new FileReader();
-      reader.readAsDataURL(this.photosToSend[this.photosToSend.length - 1]);
-      reader.onload = (_event) => {
-        this.photosToDisplay[this.photosToSend.length - 1] = reader.result;
+      reader.readAsDataURL(this.selectedPhoto);
+      reader.onload = () => {
+        this.photos.push(<string>reader.result);
       }
 
       this.isSelectedPhotoCorrect = false;
@@ -151,7 +148,7 @@ export class AddRoomComponent implements OnInit {
       return;
     }
 
-    if (this.photosToSend.length < 4) {
+    if (this.photos.length < 4) {
       this.errorMessage = "Dodaj przynajmniej 4 zdjęcia pokoju, aby móc go dodać";
       return;
     }
@@ -180,11 +177,13 @@ export class AddRoomComponent implements OnInit {
     .subscribe(
       data => {
         // adding photos of room
-        for (let i = 0; i < this.photosToSend.length; i++) {
-          const uploadPhotoData = new FormData();
-          uploadPhotoData.append('photo', this.photosToSend[i], this.photosToSend[i].name);
+        for (let i = 0; i < this.photos.length; i++) {
+          let addPhotoRequest = {
+            data: this.photos[i],
+            position: i + 1,
+          } as AddPhotoRequest;
 
-          this.photoService.addRoomPhoto(data.resortName, data.roomNumber, uploadPhotoData)
+          this.photoService.addRoomPhoto(data.resortName, data.roomNumber, addPhotoRequest)
           .subscribe(() => {
               console.log("Successfully added room photo");
             },
@@ -202,8 +201,7 @@ export class AddRoomComponent implements OnInit {
         this.doubleBedQuantity = 0;
         this.kingSizeBedQuantity = 0;
         this.maxResidentsNumber = 0;
-        this.photosToSend = [];
-        this.photosToDisplay = [];
+        this.photos = [];
       },
       error => {
         if (error.status === 409) {

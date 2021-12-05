@@ -65,11 +65,6 @@ export class RoomsComponent implements OnInit {
     this.searchService.searchRooms(this.searchPayload, this.currentPage, this.roomsPerPage, this.photosPerRoom).subscribe(
       rooms => {
         this.rooms = rooms;
-        for (let i = 0; i < this.rooms.length; ++i) {
-          for (let j = 0; j < this.rooms[i].photos.length; ++j) {
-            this.rooms[i].photos[j].bytes = 'data:image/jpeg;base64,' + this.rooms[i].photos[j].bytes;
-          }
-        }
 
         if (this.rooms.length === 0) {
           this.router.navigateByUrl('/');

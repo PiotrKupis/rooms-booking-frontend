@@ -18,7 +18,8 @@ import {AddResortComponent} from './components/add-resort/add-resort.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {AddRoomComponent} from './components/add-room/add-room.component';
 import {RoomsComponent} from './components/rooms/rooms.component';
-import { RoomComponent } from './components/room/room.component';
+import {RoomComponent} from './components/room/room.component';
+import {NgImageSliderModule} from 'ng-image-slider';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { RoomComponent } from './components/room/room.component';
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgImageSliderModule
   ],
   providers: [
     {

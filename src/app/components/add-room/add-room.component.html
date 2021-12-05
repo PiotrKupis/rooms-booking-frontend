@@ -177,8 +177,8 @@
                      value="Dodaj zdjęcie">
             </div>
 
-            <div class="row mx-2" *ngIf="photosToDisplay.length > 0">
-              <div class="col-md-4 img-container mb-3" *ngFor="let photo of photosToDisplay">
+            <div class="row mx-2" *ngIf="photos.length > 0">
+              <div class="col-md-4 img-container mb-3" *ngFor="let photo of photos">
                 <img [src]="photo" alt="Room photo">
               </div>
             </div>

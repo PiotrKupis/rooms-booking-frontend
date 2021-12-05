@@ -16,11 +16,12 @@ import {AuthService} from "../../services/auth.service";
 })
 export class RoomComponent implements OnInit {
 
-  startDate: string = "01-10-2022";
-  endDate: string = "10-10-2022";
+  startDate!: string;
+  endDate!: string;
   resortName!: string;
   roomNumber!: number;
   isLogged = false;
+  images: Array<any> = [];
 
   room = {
     resortName: "",
@@ -70,6 +71,8 @@ export class RoomComponent implements OnInit {
 
     this.resortName = String(this.activatedRoute.snapshot.paramMap.get('resortName'));
     this.roomNumber = Number(this.activatedRoute.snapshot.paramMap.get('roomNumber'));
+    this.startDate = String(this.activatedRoute.snapshot.paramMap.get('startDate'));
+    this.endDate = String(this.activatedRoute.snapshot.paramMap.get('endDate'));
 
     if (this.resortName === null || this.roomNumber === null || this.startDate === null || this.endDate === null) {
       this.router.navigateByUrl('/');
@@ -80,7 +83,11 @@ export class RoomComponent implements OnInit {
       room => {
         this.room = room;
         for (let i = 0; i < this.room.photos.length; ++i) {
-          this.room.photos[i].bytes = 'data:image/jpeg;base64,' + this.room.photos[i].bytes;
+          let image = {
+            image: this.room.photos[i].url,
+            thumbImage: this.room.photos[i].url,
+          }
+          this.images.push(image);
         }
       },
       () => {

@@ -7,17 +7,11 @@
         {{room.resortName}}
       </div>
 
-      <div class="card-body">
-        <div class="row mx-2 mt-n3">
-          <div class="col-md-3 img-container" *ngFor="let photo of room.photos.slice(0, 3)">
-            <img [src]="photo.bytes" alt="Room image">
-          </div>
-          <div class="col-md-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-secondary btn-lg w-100">
-              <b>+{{room.photos.length - 3}} zdjęcia</b>
-            </button>
-          </div>
-        </div>
+      <div class="card-body mt-n3">
+        <ng-image-slider [images]="images"
+                         [infinite]="false"
+                         [imageSize]="{width: '33%', height: 200}"
+                         slideImage="1"></ng-image-slider>
 
         <div class="row my-3">
           <div class="col-md-6">
