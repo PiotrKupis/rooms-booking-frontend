@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   private _isLogged = false;
   private email?: string;
-  private _roles?: Array<string>;
+  private _role?: string
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService._isLogged.subscribe(isLogged => this._isLogged = isLogged);
     this.authService.email.subscribe(email => this.email = email);
-    this.authService.roles.subscribe(roles => this._roles = roles);
+    this.authService.role.subscribe(role => this._role = role);
 
     this._isLogged = this.authService.isLogged();
     this.email = this.authService.getEmail();
-    this._roles = this.authService.getRoles();
+    this._role = this.authService.getRoles();
   }
 
   get isLogged() {
@@ -37,8 +37,8 @@ export class HeaderComponent implements OnInit {
     this._isLogged = value;
   }
 
-  get roles() {
-    return this._roles;
+  get role() {
+    return this._role;
   }
 
   logout() {

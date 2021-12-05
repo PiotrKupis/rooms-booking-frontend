@@ -16,7 +16,7 @@ export class AuthService {
 
   @Output() _isLogged: EventEmitter<boolean> = new EventEmitter();
   @Output() email: EventEmitter<string> = new EventEmitter();
-  @Output() roles: EventEmitter<Array<string>> = new EventEmitter();
+  @Output() role: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient,
               private localStorage: LocalStorageService) {
@@ -53,11 +53,11 @@ export class AuthService {
         this.localStorage.store('refreshToken', loginResponse.refreshToken);
         this.localStorage.store('expireDate', loginResponse.expireDate);
         this.localStorage.store('email', loginResponse.email);
-        this.localStorage.store('roles', JSON.stringify(loginResponse.roles));
+        this.localStorage.store('role', loginResponse.role);
 
         this._isLogged.emit(true);
         this.email.emit(loginResponse.email);
-        this.roles.emit(loginResponse.roles);
+        this.role.emit(loginResponse.role);
         return true;
       })
     );

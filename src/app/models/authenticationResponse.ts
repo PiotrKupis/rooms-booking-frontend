@@ -3,5 +3,5 @@ export interface AuthenticationResponse {
   refreshToken: string;
   expireDate: Date;
   email: string;
-  roles: Array<string>;
+  role: string;
 }

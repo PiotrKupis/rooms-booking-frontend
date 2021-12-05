@@ -13,12 +13,12 @@
 
         <li class="nav-item mx-4 mx-lg-5">
           <a class="nav-link" [routerLink]="'/add-resort'"
-             *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">Dodaj hotel</a>
+             *ngIf="role==='ADMIN' || role==='MODERATOR'">Dodaj hotel</a>
         </li>
 
         <li class="nav-item mx-4 mx-lg-5">
           <a class="nav-link" [routerLink]="'/add-room'"
-             *ngIf="roles?.includes('ADMIN') || roles?.includes('MODERATOR')">Dodaj pokój</a>
+             *ngIf="role==='ADMIN' || role==='MODERATOR'">Dodaj pokój</a>
         </li>
 
         <li class="nav-item dropdown mx-4 mx-lg-5">
