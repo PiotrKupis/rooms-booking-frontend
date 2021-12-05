@@ -13,6 +13,9 @@ import {SearchPayload} from "../../models/searchPayload";
 })
 export class RoomsComponent implements OnInit {
 
+  startDate?: string;
+  endDate?: string;
+
   rooms: Array<DetailedRoomPayload> = [];
   roomsPerPage: number = 2;
   numberOfPages: number = 0;
@@ -30,18 +33,18 @@ export class RoomsComponent implements OnInit {
   ngOnInit(): void {
     let location = String(this.activatedRoute.snapshot.paramMap.get('location'));
     let residentsNumber = Number(this.activatedRoute.snapshot.paramMap.get('residentsNumber'));
-    let startDate = String(this.activatedRoute.snapshot.paramMap.get('startDate'));
-    let endDate = String(this.activatedRoute.snapshot.paramMap.get('endDate'));
+    this.startDate = String(this.activatedRoute.snapshot.paramMap.get('startDate'));
+    this.endDate = String(this.activatedRoute.snapshot.paramMap.get('endDate'));
 
-    if (location == null || residentsNumber == null || startDate == null || endDate == null) {
+    if (location == null || residentsNumber == null || this.startDate == null || this.endDate == null) {
       this.router.navigateByUrl('/');
       this.toastr.error("Podano błędne dane");
     }
     this.searchPayload = {
       location: location,
       residentsNumber: residentsNumber,
-      startDate: startDate,
-      endDate: endDate
+      startDate: this.startDate,
+      endDate: this.endDate
     } as SearchPayload;
 
     this.searchService.getNumberOfFoundRooms(this.searchPayload).subscribe(
@@ -74,7 +77,11 @@ export class RoomsComponent implements OnInit {
       (error) => {
         console.log(error);
         this.router.navigateByUrl('/');
-        this.toastr.error("Wystapił błąd podczas pobierania pokoi");
+        if (error.status === 404) {
+          this.toastr.error("Brak pokoi");
+        } else {
+          this.toastr.error("Wystapił błąd podczas pobierania pokoi");
+        }
       });
   }
 

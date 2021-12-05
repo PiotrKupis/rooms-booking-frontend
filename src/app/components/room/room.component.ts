@@ -16,10 +16,10 @@ import {AuthService} from "../../services/auth.service";
 })
 export class RoomComponent implements OnInit {
 
-  startDate!: string;
-  endDate!: string;
-  resortName!: string;
-  roomNumber!: number;
+  startDate?: string;
+  endDate?: string;
+  resortName?: string;
+  roomNumber?: number;
   isLogged = false;
   images: Array<any> = [];
 
@@ -125,7 +125,8 @@ export class RoomComponent implements OnInit {
         this.router.navigateByUrl('/');
         this.toastr.success("Zarezerwowano pokój")
       },
-      () => {
+      (error) => {
+        console.log(error);
         this.toastr.error("Wystąpił błąd podczas rezerwacji pokoju")
       }
     )

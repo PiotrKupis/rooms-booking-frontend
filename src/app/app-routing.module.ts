@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'add-resort', component: AddResortComponent},
   {path: 'add-room', component: AddRoomComponent},
   {path: "rooms/:location/:residentsNumber/:startDate/:endDate", component: RoomsComponent},
-  {path: "room/:resortName/:roomNumber", component: RoomComponent}
+  {path: "room/:resortName/:roomNumber/:startDate/:endDate", component: RoomComponent}
 ];
 
 @NgModule({
