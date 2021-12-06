@@ -1,0 +1,46 @@
+<div class="container-fluid d-flex justify-content-center mt-2">
+  <div class="col-md-7">
+
+    <div class="card text-center text-dark bg-light border-dark">
+      <div class="body-header h4">
+        Zarządzanie użytkownikami
+      </div>
+
+      <div class="card-body mt-n3">
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">Lp</th>
+              <th scope="col">Imię</th>
+              <th scope="col">Nazwisko</th>
+              <th scope="col">Email</th>
+              <th scope="col">Rola</th>
+              <th scope="col">Akcja</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let user of users;let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{user.name}}</td>
+              <td>{{user.surname}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+              <td>
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold"
+                        (click)="openModal(user)">
+                  Zmień role
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <br/>
+  </div>
+</div>

@@ -34,8 +34,8 @@ export class AuthService {
     return this.localStorage.retrieve('email');
   }
 
-  getRoles() {
-    return JSON.parse(this.localStorage.retrieve('roles'));
+  getRole() {
+    return this.localStorage.retrieve('role');
   }
 
   isLogged() {

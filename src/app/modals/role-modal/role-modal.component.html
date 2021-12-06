@@ -1,0 +1,31 @@
+<div class="modal-content">
+
+  <div class="modal-header">
+
+    <div class="col-12 modal-title h5 text-center">
+      Wybierz nową rolę użytkownika
+    </div>
+
+  </div>
+  <div class="modal-body">
+    <form class="col-12" [formGroup]="changeRoleForm" (ngSubmit)="changeRole()">
+      <select [formControlName]="'selectedRole'" class="text-center">
+        <option *ngFor="let role of roles" [selected]="role == currentRole">
+          {{role}}
+        </option>
+      </select>
+    </form>
+  </div>
+
+  <div class="modal-footer col-12 d-flex justify-content-center">
+    <button type="submit" class="btn btn-outline-secondary font-weight-bold mr-3"
+            (click)="changeRole()">Zmień
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary font-weight-bold ml-3"
+            (click)="activeModal.close()">Anuluj
+    </button>
+  </div>
+</div>
+
+

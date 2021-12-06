@@ -20,6 +20,8 @@ import {AddRoomComponent} from './components/add-room/add-room.component';
 import {RoomsComponent} from './components/rooms/rooms.component';
 import {RoomComponent} from './components/room/room.component';
 import {NgImageSliderModule} from 'ng-image-slider';
+import {ChangeRoleComponent} from './components/change-role/change-role.component';
+import {RoleModalComponent} from './modals/role-modal/role-modal.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import {NgImageSliderModule} from 'ng-image-slider';
     AddRoomComponent,
     RoomsComponent,
     RoomComponent,
+    ChangeRoleComponent,
+    RoleModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
     this._isLogged = this.authService.isLogged();
     this.email = this.authService.getEmail();
-    this._role = this.authService.getRoles();
+    this._role = this.authService.getRole();
   }
 
   get isLogged() {
