@@ -3,11 +3,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DetailedRoomPayload} from "../../models/detailedRoomPayload";
 import {RoomService} from "../../services/room.service";
 import {ResortPayload} from "../../models/resortPayload";
-import {ReservationPayload} from "../../models/reservationPayload";
 import {ResortService} from "../../services/resort.service";
 import {ToastrService} from "ngx-toastr";
-import {ReservationService} from "../../services/reservation.service";
 import {AuthService} from "../../services/auth.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CreditCardFormComponent} from "../../modals/credit-card-form/credit-card-form.component";
+import {ReservationPayload} from "../../models/reservationPayload";
 
 @Component({
   selector: 'app-room',
@@ -60,7 +61,7 @@ export class RoomComponent implements OnInit {
   constructor(private authService: AuthService,
               private roomService: RoomService,
               private resortService: ResortService,
-              private reservationService: ReservationService,
+              private modalService: NgbModal,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private toastr: ToastrService) {
@@ -107,7 +108,7 @@ export class RoomComponent implements OnInit {
     )
   }
 
-  reserve() {
+  async reserve() {
     if (!this.isLogged) {
       this.toastr.error("Zaloguj się, by móc rezerwować pokoje");
       return;
@@ -120,16 +121,8 @@ export class RoomComponent implements OnInit {
       endDate: this.endDate
     } as ReservationPayload;
 
-    this.reservationService.addReservation(reservationPayload).subscribe(
-      () => {
-        this.router.navigateByUrl('/');
-        this.toastr.success("Zarezerwowano pokój")
-      },
-      (error) => {
-        console.log(error);
-        this.toastr.error("Wystąpił błąd podczas rezerwacji pokoju")
-      }
-    )
+    let modalRef = this.modalService.open(CreditCardFormComponent, {centered: true, size: 'lg'});
+    modalRef.componentInstance.reservationPayload = reservationPayload;
   }
 
   convertRoomAmenityToString(amenityEnum: string): string {

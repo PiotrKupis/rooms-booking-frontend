@@ -3,4 +3,5 @@ export interface ReservationPayload {
   roomNumber: number;
   startDate: string;
   endDate: string;
+  stripeToken: string;
 }

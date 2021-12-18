@@ -57,7 +57,7 @@ export class AddResortComponent implements OnInit {
       {key: 4, value: 'Taras'},
       {key: 5, value: 'Jacuzzi'},
       {key: 6, value: 'Ogrzewanie'},
-      {key: 7, value: 'Darmowe WiFi"'},
+      {key: 7, value: 'Darmowe WiFi'},
       {key: 8, value: 'Basen'},
       {key: 9, value: 'Parking'}
     ];
@@ -162,18 +162,18 @@ export class AddResortComponent implements OnInit {
 
     this.resortService.addResort(addResortPayload)
     .subscribe(() => {
-          this.isSuccess = true;
-          this.toastr.success("Dodano nowy ośrodek");
-          this.addResortForm.reset();
-          this.selectedAmenities = [];
-        },
-        error => {
-          if (error.status === 409) {
-            this.errorMessage = "Podana nazwa ośrodka jest już zajęta";
-          } else {
-            this.errorMessage = "Wystapił błąd podczas łączenia się z serwerem";
-          }
-        });
+        this.isSuccess = true;
+        this.toastr.success("Dodano nowy ośrodek");
+        this.addResortForm.reset();
+        this.selectedAmenities = [];
+      },
+      error => {
+        if (error.status === 409) {
+          this.errorMessage = "Podana nazwa ośrodka jest już zajęta";
+        } else {
+          this.errorMessage = "Wystapił błąd podczas łączenia się z serwerem";
+        }
+      });
   }
 
   formatHour(hour: number): string {

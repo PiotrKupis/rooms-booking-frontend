@@ -22,6 +22,7 @@ import {RoomComponent} from './components/room/room.component';
 import {NgImageSliderModule} from 'ng-image-slider';
 import {ChangeRoleComponent} from './components/change-role/change-role.component';
 import {RoleModalComponent} from './modals/role-modal/role-modal.component';
+import {CreditCardFormComponent} from './modals/credit-card-form/credit-card-form.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {RoleModalComponent} from './modals/role-modal/role-modal.component';
     RoomComponent,
     ChangeRoleComponent,
     RoleModalComponent,
+    CreditCardFormComponent,
   ],
   imports: [
     BrowserModule,

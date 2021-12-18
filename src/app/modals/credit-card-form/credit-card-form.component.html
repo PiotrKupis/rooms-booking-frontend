@@ -1,0 +1,46 @@
+<div class="modal-content">
+
+  <div class="modal-header">
+    <div class="col-12 modal-title h5 text-center">
+      Płatność kartą
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <form class="col-12" [formGroup]="payForm" (ngSubmit)="pay()">
+
+      <div class="form-group row justify-content-center">
+        <label for="cardNumber" class="col-md-3 my-auto text-md-center">Numer karty</label>
+        <input type="text" [formControlName]="'cardNumber'" placeholder="4242 4242 4242 4242"
+               id="cardNumber" class="form-control col-md-6 my-auto text-center">
+      </div>
+
+      <div class="form-group row justify-content-center">
+        <p class="col-md-3 my-auto text-md-center">Ważna do</p>
+        <input type="text" [formControlName]="'expireMonth'" placeholder="miesiąc"
+               class="form-control col-md-3 my-auto text-center">
+        <p class="col-md-1 my-auto text-center">/</p>
+        <input type="text" [formControlName]="'expireYear'" placeholder="rok"
+               class="form-control col-md-3 my-auto text-center">
+      </div>
+
+      <div class="form-group row justify-content-center">
+        <label for="cvv" class="col-md-3 my-auto text-md-center">CVC</label>
+        <input type="text" [formControlName]="'cvv'" placeholder="123" id="cvv"
+               class="form-control col-md-3 my-auto text-center">
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer col-12 d-flex justify-content-center">
+    <button type="submit" class="btn btn-outline-secondary font-weight-bold mr-3 w-25"
+            (click)="pay()">Zapłać
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary font-weight-bold ml-3 w-25"
+            (click)="activeModal.close()">Anuluj
+    </button>
+  </div>
+</div>
+
+
