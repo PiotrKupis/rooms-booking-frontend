@@ -1,0 +1,24 @@
+<div class="modal-content">
+
+  <div class="modal-header">
+    <div class="col-12 modal-title h5 text-center">
+      Uwaga
+    </div>
+  </div>
+
+  <div class="modal-body text-md-center">
+    {{question}}
+  </div>
+
+  <div class="modal-footer col-12 d-flex justify-content-center">
+    <button type="submit" class="btn btn-outline-secondary font-weight-bold mr-3"
+            (click)="activeModal.close(true)">Tak
+    </button>
+
+    <button type="button" class="btn btn-outline-secondary font-weight-bold ml-3"
+            (click)="activeModal.close(false)">Nie
+    </button>
+  </div>
+</div>
+
+
