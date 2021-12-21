@@ -23,6 +23,8 @@ import {NgImageSliderModule} from 'ng-image-slider';
 import {ChangeRoleComponent} from './components/change-role/change-role.component';
 import {RoleModalComponent} from './modals/role-modal/role-modal.component';
 import {CreditCardFormComponent} from './modals/credit-card-form/credit-card-form.component';
+import {RoomsManagementComponent} from './components/rooms-management/rooms-management.component';
+import {ConfirmModalComponent} from './modals/confirm-modal/confirm-modal.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import {CreditCardFormComponent} from './modals/credit-card-form/credit-card-for
     ChangeRoleComponent,
     RoleModalComponent,
     CreditCardFormComponent,
+    RoomsManagementComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,

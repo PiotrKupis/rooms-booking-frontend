@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {ResortPayload} from "../models/resortPayload";
+import {DetailedRoomPayload} from "../models/detailedRoomPayload";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class ResortService {
 
   getResortByName(resortName: string): Observable<ResortPayload> {
     return this.http.get<ResortPayload>(this.path + "/" + resortName);
+  }
+
+  getResortRooms(resortName: string): Observable<Array<DetailedRoomPayload>> {
+    return this.http.get<Array<DetailedRoomPayload>>(this.path + "/" + resortName + "/rooms");
   }
 
   convertResortAmenityToString(amenityEnum: string): string {

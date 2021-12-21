@@ -31,7 +31,9 @@
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Konto
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" *ngIf="role==='ADMIN' || role==='MODERATOR'"
+               [routerLink]="'/rooms/management'">Zarządzaj pokojami</a>
             <a class="dropdown-item" (click)="logout()">Wyloguj się</a>
           </div>
         </li>

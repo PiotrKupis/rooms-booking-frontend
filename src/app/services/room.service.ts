@@ -34,12 +34,16 @@ export class RoomService {
     return this.http.post<RoomPayload>(this.path, addRoomRequest);
   }
 
-  getAllRooms(imageQuantity: number): Observable<Array<DetailedRoomPayload>> {
-    return this.http.get<Array<DetailedRoomPayload>>(this.path + "?image-quantity=" + imageQuantity);
+  getAllRooms(photoQuantity: number): Observable<Array<DetailedRoomPayload>> {
+    return this.http.get<Array<DetailedRoomPayload>>(this.path + "?photo-quantity=" + photoQuantity);
   }
 
   getRoom(resortName: string, roomNumber: number): Observable<DetailedRoomPayload> {
     return this.http.get<DetailedRoomPayload>(this.path + "/" + resortName + "/" + roomNumber);
+  }
+
+  deleteRoom(resortName: string, roomNumber: number): Observable<string> {
+    return this.http.delete<string>(this.path + "/" + resortName + "/" + roomNumber);
   }
 
   convertRoomAmenityToString(amenityEnum: string): string {

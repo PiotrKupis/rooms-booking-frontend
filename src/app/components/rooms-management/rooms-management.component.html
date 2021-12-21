@@ -3,7 +3,7 @@
 
     <div class="card text-center text-dark bg-light border-dark">
       <div class="body-header h4">
-        Zarządzanie użytkownikami
+        Zarządzanie pokojami
       </div>
 
       <div class="card-body mt-n3">
@@ -13,25 +13,26 @@
             <thead>
             <tr>
               <th scope="col">Lp</th>
-              <th scope="col">Imię</th>
-              <th scope="col">Nazwisko</th>
-              <th scope="col">Email</th>
-              <th scope="col">Rola</th>
+              <th scope="col">Hotel</th>
+              <th scope="col">Miasto</th>
+              <th scope="col">Nr pokoju</th>
               <th scope="col"></th>
             </tr>
             </thead>
 
             <tbody>
-            <tr *ngFor="let user of users;let i = index">
+            <tr *ngFor="let room of rooms;let i = index">
               <th scope="row">{{i + 1}}</th>
-              <td>{{user.name}}</td>
-              <td>{{user.surname}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.role}}</td>
-              <td>
+              <td>{{room.resortName}}</td>
+              <td>{{room.city}}</td>
+              <td>{{room.roomNumber}}</td>
+              <td class="d-flex justify-content-around">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold">
+                  Edytuj
+                </button>
                 <button type="submit" class="btn btn-outline-secondary font-weight-bold"
-                        (click)="openModal(user)">
-                  Zmień role
+                        (click)="deleteRoom(room)">
+                  Usuń
                 </button>
               </td>
             </tr>
