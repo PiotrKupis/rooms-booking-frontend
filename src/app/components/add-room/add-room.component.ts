@@ -22,7 +22,6 @@ export class AddRoomComponent implements OnInit {
   isSuccess: boolean = false;
   step: number = 1;
 
-  amenities: Array<any> = [];
   dropdownSettings: IDropdownSettings = {};
   selectedAmenities = []
 
@@ -40,7 +39,7 @@ export class AddRoomComponent implements OnInit {
               private photoService: PhotoService,
               private authService: AuthService,
               private toastr: ToastrService,
-              private roomService: RoomService) {
+              public roomService: RoomService) {
   }
 
   ngOnInit(): void {
@@ -55,20 +54,6 @@ export class AddRoomComponent implements OnInit {
         this.resortName?.setValue(this.availableResorts[0]);
       }
     });
-
-    this.amenities = [
-      {key: 1, value: 'Klimatyzacja'},
-      {key: 2, value: 'Aneks kuchenny'},
-      {key: 3, value: 'Kuchnia'},
-      {key: 4, value: 'Balkon'},
-      {key: 5, value: 'Telewizor'},
-      {key: 6, value: 'Pralka'},
-      {key: 7, value: 'Netflix'},
-      {key: 8, value: 'Prywatna łazienka'},
-      {key: 9, value: 'Lodówka'},
-      {key: 10, value: 'Mikrofalówka'},
-      {key: 11, value: 'Żelazko'}
-    ];
 
     this.dropdownSettings = {
       idField: 'key',
@@ -155,7 +140,7 @@ export class AddRoomComponent implements OnInit {
 
     let amenityEnums = [];
     for (let i = 0; i < this.roomAmenities?.value.length; ++i) {
-      let amenityEnum = this.convertStringToRoomAmenity(this.roomAmenities?.value[i].value);
+      let amenityEnum = this.roomService.convertStringToRoomAmenity(this.roomAmenities?.value[i].value);
       if (amenityEnum !== "UNDEFINED") {
         amenityEnums.push(amenityEnum);
       }
@@ -211,10 +196,6 @@ export class AddRoomComponent implements OnInit {
         }
       }
     )
-  }
-
-  convertStringToRoomAmenity(amenity: string): string {
-    return this.roomService.convertStringToRoomAmenity(amenity);
   }
 
   continue() {

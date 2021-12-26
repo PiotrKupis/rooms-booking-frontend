@@ -7,6 +7,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ConfirmModalComponent} from "../../modals/confirm-modal/confirm-modal.component";
 import {RoomService} from "../../services/room.service";
 import {ToastrService} from "ngx-toastr";
+import {EditRoomModalComponent} from "../../modals/edit-room-modal/edit-room-modal.component";
 
 @Component({
   selector: 'app-rooms-management',
@@ -52,6 +53,23 @@ export class RoomsManagementComponent implements OnInit {
           console.log(error);
           this.toastr.error("Wystapił błąd podczas pobierania listy pokoi");
         });
+    });
+  }
+
+  editRoom(room: DetailedRoomPayload) {
+    let modalRef = this.modalService.open(EditRoomModalComponent, {centered: true, size: 'lg'});
+    modalRef.componentInstance.room = room;
+    modalRef.result.then(roomPayload => {
+      if (roomPayload !== undefined) {
+        let roomIndex = this.rooms.indexOf(room);
+        this.rooms[roomIndex].roomNumber = roomPayload.roomNumber;
+        this.rooms[roomIndex].price = roomPayload.price;
+        this.rooms[roomIndex].roomAmenities = roomPayload.roomAmenities;
+        this.rooms[roomIndex].singleBedQuantity = roomPayload.singleBedQuantity;
+        this.rooms[roomIndex].doubleBedQuantity = roomPayload.doubleBedQuantity;
+        this.rooms[roomIndex].kingSizeBedQuantity = roomPayload.kingSizeBedQuantity;
+        this.rooms[roomIndex].maxResidentsNumber = roomPayload.maxResidentsNumber;
+      }
     });
   }
 

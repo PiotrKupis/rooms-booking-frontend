@@ -13,7 +13,7 @@ export class RoomService {
 
   path = environment.apiEndpoint + "room";
 
-  roomAmenities = new Map([
+  private roomAmenities = new Map([
     ["AIR_CONDITIONING", "Klimatyzacja"],
     ["KITCHENETTE", "Aneks kuchenny"],
     ["KITCHEN", "Kuchnia"],
@@ -26,6 +26,20 @@ export class RoomService {
     ["MICROWAVE", "Mikrofalówka"],
     ["IRON", "Żelazko"]
   ])
+
+  private _amenitiesDisplayList = [
+    {key: 1, value: 'Klimatyzacja'},
+    {key: 2, value: 'Aneks kuchenny'},
+    {key: 3, value: 'Kuchnia'},
+    {key: 4, value: 'Balkon'},
+    {key: 5, value: 'Telewizor'},
+    {key: 6, value: 'Pralka'},
+    {key: 7, value: 'Netflix'},
+    {key: 8, value: 'Prywatna łazienka'},
+    {key: 9, value: 'Lodówka'},
+    {key: 10, value: 'Mikrofalówka'},
+    {key: 11, value: 'Żelazko'}
+  ];
 
   constructor(private http: HttpClient) {
   }
@@ -40,6 +54,10 @@ export class RoomService {
 
   getRoom(resortName: string, roomNumber: number): Observable<DetailedRoomPayload> {
     return this.http.get<DetailedRoomPayload>(this.path + "/" + resortName + "/" + roomNumber);
+  }
+
+  updateRoom(resortName: string, roomNumber: number, addRoomRequest: AddRoomRequest): Observable<RoomPayload> {
+    return this.http.put<RoomPayload>(this.path + "/" + resortName + "/" + roomNumber, addRoomRequest);
   }
 
   deleteRoom(resortName: string, roomNumber: number): Observable<string> {
@@ -60,5 +78,9 @@ export class RoomService {
         return key;
     }
     return "UNDEFINED";
+  }
+
+  get amenitiesDisplayList() {
+    return this._amenitiesDisplayList
   }
 }

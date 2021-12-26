@@ -65,7 +65,8 @@
                 <ng-multiselect-dropdown [formControlName]="'roomAmenities'" id="roomAmenities"
                                          [(ngModel)]="selectedAmenities"
                                          [placeholder]="'Udogodnienia pokoju'"
-                                         [settings]="dropdownSettings" [data]="amenities">
+                                         [settings]="dropdownSettings"
+                                         [data]="roomService.amenitiesDisplayList">
                 </ng-multiselect-dropdown>
               </div>
             </div>

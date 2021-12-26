@@ -27,7 +27,8 @@
               <td>{{room.city}}</td>
               <td>{{room.roomNumber}}</td>
               <td class="d-flex justify-content-around">
-                <button type="submit" class="btn btn-outline-secondary font-weight-bold">
+                <button type="submit" class="btn btn-outline-secondary font-weight-bold"
+                        (click)="editRoom(room)">
                   Edytuj
                 </button>
                 <button type="submit" class="btn btn-outline-secondary font-weight-bold"

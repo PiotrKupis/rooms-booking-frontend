@@ -25,6 +25,7 @@ import {RoleModalComponent} from './modals/role-modal/role-modal.component';
 import {CreditCardFormComponent} from './modals/credit-card-form/credit-card-form.component';
 import {RoomsManagementComponent} from './components/rooms-management/rooms-management.component';
 import {ConfirmModalComponent} from './modals/confirm-modal/confirm-modal.component';
+import {EditRoomModalComponent} from './modals/edit-room-modal/edit-room-modal.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {ConfirmModalComponent} from './modals/confirm-modal/confirm-modal.compon
     CreditCardFormComponent,
     RoomsManagementComponent,
     ConfirmModalComponent,
+    EditRoomModalComponent,
   ],
   imports: [
     BrowserModule,
