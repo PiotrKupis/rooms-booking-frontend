@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(public translate: TranslateService) {
     translate.addLangs(['pl']);
     translate.setDefaultLang('pl');
+    translate.use('pl');
   }
 
 }
