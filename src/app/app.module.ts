@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -26,6 +26,7 @@ import {CreditCardFormComponent} from './modals/credit-card-form/credit-card-for
 import {RoomsManagementComponent} from './components/rooms-management/rooms-management.component';
 import {ConfirmModalComponent} from './modals/confirm-modal/confirm-modal.component';
 import {EditRoomModalComponent} from './modals/edit-room-modal/edit-room-modal.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -57,15 +58,17 @@ import {EditRoomModalComponent} from './modals/edit-room-modal/edit-room-modal.c
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
-    NgImageSliderModule
+    NgImageSliderModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'pl'
+    })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
-    {provide: LOCALE_ID, useValue: 'pl-PL'}],
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
