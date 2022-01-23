@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -27,7 +27,10 @@ import {RoomsManagementComponent} from './components/rooms-management/rooms-mana
 import {ConfirmModalComponent} from './modals/confirm-modal/confirm-modal.component';
 import {EditRoomModalComponent} from './modals/edit-room-modal/edit-room-modal.component';
 import {TranslateModule} from "@ngx-translate/core";
+import {registerLocaleData} from "@angular/common";
+import locale from '@angular/common/locales/pl';
 
+registerLocaleData(locale);
 
 @NgModule({
   declarations: [
@@ -68,6 +71,10 @@ import {TranslateModule} from "@ngx-translate/core";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pl'
     }],
   bootstrap: [AppComponent]
 })
