@@ -17,7 +17,7 @@ export class RoomsComponent implements OnInit {
   endDate?: string;
 
   rooms: Array<DetailedRoomPayload> = [];
-  roomsPerPage: number = 2;
+  roomsPerPage: number = 5;
   numberOfPages: number = 0;
   currentPage: number = 1;
   photosPerRoom = 3;
