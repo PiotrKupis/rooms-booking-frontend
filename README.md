@@ -1,32 +1,17 @@
 # RoomsBookingFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version
-12.2.6.
+The client applicaton of a system for searching and booking hotel rooms. 
 
-## Development server
+The application offers various sets of functionalities depending on the role of the user. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically
-reload if you change any of the source files.
+## Features
+* registration
+* logging in
+* adding hotels
+* searching for rooms
+* booking rooms
+* changing user roles 
+* adding, editing and deleting hotel rooms
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also
-use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you
-need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out
-the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The application has a payment system based on the Stripe service and uses the Cloudinary service to store photos of 
+added hotel rooms
